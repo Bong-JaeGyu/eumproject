@@ -16,8 +16,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -94,6 +96,21 @@ public class HomeController {
 		return new ModelAndView("login");
 	}
 			
+	@ResponseBody
+	@RequestMapping(value = "logingo.do", method = RequestMethod.POST)
+	public ModelAndView logingo(HttpServletRequest request, Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	
+		
+		  @SuppressWarnings("unchecked")
+		List<HashMap<String, Object>> userList=(List<HashMap<String, Object>>) request.getParameterMap();
+		System.out.println(userList);
+		String id = (String) request.getParameter("member_id");			// 보내진 id 받아옴
+		String pass = (String) request.getParameter("member_pw");		// 보내진 pw 받아옴
+		System.out.println(request.toString());
+		System.out.println(id+"                "+pass);
+		return new ModelAndView("login");
+	}
+	
 	
 	
 

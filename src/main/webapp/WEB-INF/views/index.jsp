@@ -111,13 +111,13 @@ var app = new Vue({
 							<div class="form-group">
 								<div class="col-sm-12">
                                     
-									<input class="form-control" v-model="msessage" id="email1" name="email1" placeholder="아이디" type="text">
+									<input class="form-control" v-model="member_id" id="email1" name="member_id" placeholder="아이디" type="text">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-12">
 									<!-- <input class="form-control" id="exampleInputPassword1" name="exampleInputPassword1" placeholder="비밀번호" type="text"> -->
-                                    <input class="form-control" id="exampleInputPassword1" name="exampleInputPassword1" placeholder="비밀번호" type="text">
+                                    <input class="form-control"   v-model="member_pw" id="exampleInputPassword1" name="member_pw" placeholder="비밀번호" type="text">
                                 </div>
 							</div>
 							<div class="row">
@@ -125,7 +125,7 @@ var app = new Vue({
 									<button  v-on:click="logingo" class="btn btn-light btn-radius btn-brd grd1">
 										접속하기
 									</button>
-									<a class="for-pwd" href="javascript:;">{{msessage}}</a>
+									<a class="for-pwd" href="javascript:;">{{member_id}}</a>
 								</div>
 							</div>
 						</form>
@@ -136,15 +136,24 @@ var app = new Vue({
             var vm2 = new Vue({
                 el:"#Login",
                 data: {
-                    msessage:'안녕하세요'
+                	member_id:'',
+                	member_pw:''
         
                 },
                 methods: {
-                	logingo: function () {
-                		alert(this.msessage+"ㅅㅅㅅㅅ");
-                    }
-                }
+    				logingo: function() {
+    					axios.post(`logingo.do`,{member_id:"tttttt", member_pw:this.member_pw})
+    							.then(function(response) {
+    								console.log(response);
+    								
+    							});
+    				}
+    			}
             })
+            
+            	
+            
+            
             
             </script>
 					

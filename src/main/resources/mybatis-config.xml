@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.my.dto.UserVO" alias="UserVO"/> <!-- UserVO의 위치 결정 -> userMapper.xml에서 사용 -->
+	</typeAliases>
+
+</configuration> 
+
+

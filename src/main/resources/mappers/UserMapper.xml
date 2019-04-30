@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.my.mapper.UserMapper">
+
+
+
+    <select id="selectUser" resultType="UserVO"> <!-- mybatis-config.xml에서 설정해줘서 com.my.dto.UserVO 말고 그냥 적어도 됨 -->
+        SELECT * FROM member
+    </select>
+    
+    
+    
+    	<insert id="insertMember" parameterType="java.util.HashMap">
+		insert into member
+		values(
+		#{member_id}, #{member_pw}, #{user_name}, #{user_age}, #{user_img}, #{mentor}, sysdate(),sysdate(), #{login},#{job},#{career}, #{school}, #{grade} )
+	</insert>
+	
+	<update id="updateMember" parameterType="java.util.HashMap">
+		update member set
+		m_pw =
+		#{m_pw}, m_phone= #{m_phone}
+		where m_email = #{m_email}
+	</update>
+	<delete id="deleteMember" parameterType="String">
+		delete from member where
+		m_email = #{m_email}
+	</delete>
+	
+	<select id="selectOne" parameterType="String" resultType="java.util.HashMap">
+		select
+		* from member where member_id = #{member_id}
+	</select>
+	<select id="selectAll" resultType="java.util.HashMap">
+		select * from member
+	</select>
+
+
+    
+    
+    
+    
+    
+</mapper>
+
+

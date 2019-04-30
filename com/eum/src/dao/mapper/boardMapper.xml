@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="dao.BoardDao">
+
+
+<select id="selectOne" parameterType="int" resultType="Board">
+select * from board where b_num=#{b_num}
+</select>
+
+
+<select id="getCount" resultType="int" parameterType="java.util.HashMap">
+select count(*) from board
+where 1= 0
+<if test="b_title != null">or b_title like '%${b_title}%'</if>
+<if test="b_content != null">or b_content like '%${b_content}%'</if>
+<if test="b_email != null">or b_email like '%${b_email}%'</if>
+<if test="type ==0">or 1=1</if>
+<if test="startdate !=null">or b_reg_date between #{startdate} and #{enddate}</if>
+<if test="b_index !=null">and b_index=#{b_index}</if>
+
+
+
+</select>
+
+<select id="selectBoardPage" parameterType="java.util.HashMap" 
+        resultType="Board">
+        select * from board where 1 = 0 
+       
+		<if test="b_title != null">
+		   or b_title like '%${b_title}%'
+		</if>
+		<if test="b_content != null">
+		    or b_content like '%${b_content}%'
+		</if>
+		<if test="b_email != null">
+        	or b_email like '%${b_email}%'
+		</if>
+		<if test="type == 0">
+		 or 1=1
+		</if>
+		<if test="startdate != null">
+		 or b_reg_date 
+      	  between #{startdate} and #{enddate}
+		</if>
+		
+		<if test="b_index != null">
+		 and b_index=#{b_index}
+		</if>
+		
+         order by b_num desc limit #{skip},#{qty}
+         
+    </select>
+
+
+
+
+	<sql id="b_title">
+		<choose>
+			<when test="b_title != null">
+				#{b_title}
+			</when>
+			<otherwise>
+				'제목없음'
+			</otherwise>
+		</choose>
+	</sql>
+	<sql id="b_content">
+		<choose>
+			<when test="b_content != null">
+				#{b_content}
+			</when>
+			<otherwise>
+				'내용없음'
+			</otherwise>
+
+		</choose>
+	</sql>
+
+
+
+<insert id="insertBoard" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="b_num">
+insert into board values(0,<include refid="b_title"></include>,<include refid="b_content"></include>,#{b_email},sysdate(),#{b_file},#{b_pass},0,#{b_index})
+
+</insert>
+
+<update id="updateBoard" parameterType="java.util.HashMap">
+update board set b_pass=#{b_pass},b_email=#{b_email},b_title=<include refid="b_title"></include>,b_content=<include refid="b_content"></include>,
+b_reg_date=#{b_reg_date},b_readCount=#{b_readCount} where b_num=#{b_num}
+
+</update>
+
+<delete id="deleteBoard" parameterType="int">
+delete from board where b_num =#{b_num}
+</delete>
+
+
+<update id="sort">
+ALTER TABLE board AUTO_INCREMENT=1;
+SET @COUNT = 0;
+UPDATE board SET b_num = @COUNT:=@COUNT+1;
+</update>
+
+
+
+
+
+
+
+
+
+
+</mapper>

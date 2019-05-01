@@ -8,7 +8,7 @@ public interface UserService {
     public List<UserVO> selectUser() throws Exception;
     public List<HashMap<String, Object>> getMemberList();
     public void joinMember(HashMap<String, Object>params);
-    public boolean loginMember(String m_id, String m_pw);
+    public int loginMember(String m_id, String m_pw);
     
     public HashMap<String, Object>getMemberInfo(String m_id);
     

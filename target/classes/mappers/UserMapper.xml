@@ -29,8 +29,7 @@
 	</delete>
 	
 	<select id="selectOne" parameterType="String" resultType="java.util.HashMap">
-		select
-		* from member where member_id = #{member_id}
+		select * from member where member_id = #{member_id}
 	</select>
 	<select id="selectAll" resultType="java.util.HashMap">
 		select * from member

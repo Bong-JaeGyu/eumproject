@@ -3,6 +3,7 @@ package com.eum.eumproject;
 
 
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -95,27 +97,31 @@ public class HomeController {
 	public ModelAndView loginFailPage(HttpServletRequest request, Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
 		return new ModelAndView("login");
 	}
-			
+
+//	@RequestMapping(value = "logingo.do", method = RequestMethod.POST)
+//	@RequestMapping(value = "index.do")
 	@ResponseBody
-	@RequestMapping(value = "logingo.do", method = RequestMethod.POST)
-	public ModelAndView logingo(HttpServletRequest request, Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	@RequestMapping(value = "logingo.do" ) 
+//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public  ModelAndView logingo(String member_id,  String member_pw,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
 	
+
+		System.out.println(member_id+"                "+member_pw);
 		
-		  @SuppressWarnings("unchecked")
-		List<HashMap<String, Object>> userList=(List<HashMap<String, Object>>) request.getParameterMap();
-		System.out.println(userList);
-		String id = (String) request.getParameter("member_id");			// 보내진 id 받아옴
-		String pass = (String) request.getParameter("member_pw");		// 보내진 pw 받아옴
-		System.out.println(request.toString());
-		System.out.println(id+"                "+pass);
+		System.out.println(service.loginMember(member_id, member_pw));
+		
+		
 		return new ModelAndView("login");
 	}
 	
 	
 	
+	
+	
+	
 
 	// db 접속
-	@RequestMapping(value = "/dbTest", method = RequestMethod.GET)
+	@RequestMapping(value = "/dbTest.do", method = RequestMethod.GET)
 	public ModelAndView dbTestPage(Locale locale, Model model) throws Exception{
 	    List<HashMap<String, Object>> userList = service.getMemberList();
 	       

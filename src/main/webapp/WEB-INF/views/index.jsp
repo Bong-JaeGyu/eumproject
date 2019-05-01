@@ -54,23 +54,6 @@
 </head>
 <body class="host_version"> 
 
-	<div id="app33">
-		<button v-on:click="getData">프레임워크 목록 가져오기</button>
-	</div>
-	<script>
-		new Vue({
-			el: '#app33',
-			methods: {
-				getData: function() {
-					axios.get(`https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json`)
-							.then(function(response) {
-								console.log(response);
-								alert(response.data.fe1)
-							});
-				}
-			}
-		});
-	</script>
 
 <div id="app11">
   {{ message }}
@@ -107,7 +90,7 @@ var app = new Vue({
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div class="tab-pane active" id="Login">
-						<form role="form" class="form-horizontal" >
+						<form role="form" class="form-horizontal" action="#">
 							<div class="form-group">
 								<div class="col-sm-12">
                                     
@@ -141,13 +124,42 @@ var app = new Vue({
         
                 },
                 methods: {
-    				logingo: function() {
-    					axios.post(`logingo.do`,{member_id:"tttttt", member_pw:this.member_pw})
+          	
+    				logingo: function(e) {
+    					
+    					var param ={
+    							member_id: this.member_id, 
+    							member_pw:this.member_pw
+    					};
+    				
+/*     					axios.get('http://localhost:8080/eumproject/logingo.do', param)
     							.then(function(response) {
     								console.log(response);
     								
-    							});
-    				}
+    							}); */
+    							
+/* 						axios({
+							
+							  url: 'http://localhost:8080/eumproject/logingo.do?member_id=999&member_pw=888',
+							  method: 'get',
+							  data: {
+								  member_id: 'Siberian Husky',
+								  member_pw: 'Siberian Husky'
+							  }
+						}) */
+						
+						axios.get('logingo.do', {
+						  params: {
+							  member_id: this.member_id,
+							  member_pw: this.member_pw
+						  }
+						
+						}).then(function(response) {
+							console.log(response);
+							
+						});
+						
+   					}
     			}
             })
             

@@ -31,17 +31,17 @@ public class UserServiceImpl implements UserService{
 			dao.insertMember(params);
 	}
 	
-	public boolean loginMember(String m_id, String m_pw) {
-
+	public int loginMember(String m_id, String m_pw) {
+		
 		HashMap<String, Object>member= dao.selectOne(m_id);
-	
+		
 		if(member ==null)
-			return false;
+			return 0;
 		else {
-			if(member.get("m_pw").equals(m_pw)) {
-				return true;
+			if(member.get("member_pw").equals(m_pw)) {
+				return 1;
 			}else 
-				return false;
+				return 0;
 		}
 
 	}

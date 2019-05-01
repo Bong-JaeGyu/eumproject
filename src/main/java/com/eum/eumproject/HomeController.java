@@ -12,6 +12,8 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,15 +105,24 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "logingo.do" ) 
 //	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public  ModelAndView logingo(String member_id,  String member_pw,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void logingo(String member_id,  String member_pw,  Model model, HttpServletResponse resp, HttpSession session) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
 	
 
 		System.out.println(member_id+"                "+member_pw);
 		
 		System.out.println(service.loginMember(member_id, member_pw));
+		System.out.println(session.getAttribute("id"));
 		
+		String result="fail";
+		if(service.loginMember(member_id, member_pw)==1){
+			session.setAttribute("id", member_id);
 		
-		return new ModelAndView("login");
+			result = member_id;
+			
+		}
+		resp.getWriter().println(result);
+		
+//		return new ModelAndView("login");
 	}
 	
 	

@@ -49,21 +49,21 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-	
     
 </head>
 <body class="host_version"> 
 
+<%=session.getAttribute("id") %>
 
-<div id="app11">
-  {{ message }}
+<div id="app11" v-bind="message">
+  {{ message }}님
 </div>
 
 
 
 
 <script>
-var app = new Vue({
+var app11 = new Vue({
 	  el: '#app11',
 	  data: {
 	    message: '로그인 안됨'
@@ -100,11 +100,13 @@ var app = new Vue({
 							<div class="form-group">
 								<div class="col-sm-12">
 									<!-- <input class="form-control" id="exampleInputPassword1" name="exampleInputPassword1" placeholder="비밀번호" type="text"> -->
-                                    <input class="form-control"   v-model="member_pw" id="exampleInputPassword1" name="member_pw" placeholder="비밀번호" type="text">
+                                    <input class="form-control" v-model="member_pw" id="exampleInputPassword1" name="member_pw" placeholder="비밀번호" type="text">
                                 </div>
 							</div>
 							<div class="row">
 								<div class="col-sm-10">
+								
+					
 									<button  v-on:click="logingo" class="btn btn-light btn-radius btn-brd grd1">
 										접속하기
 									</button>
@@ -154,10 +156,15 @@ var app = new Vue({
 							  member_pw: this.member_pw
 						  }
 						
-						}).then(function(response) {
-							console.log(response);
-							
-						});
+						}).then(function(data) {
+							console.log(data);
+							console.log(data.data);
+							if(data.data.result !="fail"){
+				//				console.log(app11.$data.message);
+								app11.$data.message=data.data;
+								
+							}
+						})
 						
    					}
     			}

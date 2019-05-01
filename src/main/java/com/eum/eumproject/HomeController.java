@@ -126,6 +126,30 @@ public class HomeController {
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value = "joingo.do" ) 
+//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void joingo(String user_id,  String user_pw, String job, Model model, HttpServletResponse resp, HttpSession session) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	
+
+		System.out.println(user_id+"                "+user_pw+"        " +job);
+		
+		System.out.println(service.loginMember(user_id, user_pw));
+		System.out.println(session.getAttribute("id"));
+		
+		String result="fail";
+		if(service.loginMember(user_id, user_pw)==1){
+			session.setAttribute("id", user_id);
+		
+			result = user_id;
+			
+		}
+		resp.getWriter().println(result);
+		
+//		return new ModelAndView("login");
+	}
+	
+	
 	
 	
 	

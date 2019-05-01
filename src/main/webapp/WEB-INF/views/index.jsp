@@ -87,6 +87,7 @@
 					<ul class="nav nav-tabs">
 						<li><a class="active" href="#Login" data-toggle="tab">로그인</a></li>
 						<li><a href="#Registration" data-toggle="tab">가입하기</a></li>
+						
 						<li><a href="#Registration2" data-toggle="tab">추가정보</a></li>
 
 
@@ -146,7 +147,7 @@
 
 									<div class="form-group">
 										<div class="col-sm-12">
-											<input class="form-control" placeholder="이름" type="text">
+											<input class="form-control" v-model="user_name" placeholder="이름" type="text">
 										</div>
 									</div>
 									<div class="form-group">
@@ -165,14 +166,14 @@
 
 									<div class="form-group">
 										<div class="col-sm-12">
-											<input class="form-control" id="password-cf"
+											<input class="form-control" v-model="user_pw_cf" id="password_cf"
 												placeholder="비밀번호확인" type="password">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div class="col-sm-12">
-											<input class="form-control" id="mobile" placeholder="전화번호"
+											<input class="form-control" id="mobile" v-model="user_tel" placeholder="전화번호"
 												type="text">
 										</div>
 									</div>
@@ -185,11 +186,22 @@
 								<div class="row">
 									<div class="col-sm-10">
 
-
+					
 										<button type="button"
 											class="btn btn-light btn-radius btn-brd grd1">취소</button>
 									</div>
 								</div>
+								
+								
+								<!-- 	<ul class="nav nav-tabs">
+						<li><a class="active" href="#Registration2" data-toggle="tab">추가정보</a></li>
+						<li><a href="#" data-toggle="tab">취소</a></li>
+								</ul> -->
+								
+								
+								
+								
+								
 						</div>
 
 						<div class="tab-pane" id="Registration2">
@@ -198,20 +210,20 @@
 							<div class="form-group">
 								<div class="col-sm-12">
 									<input class="form-control" id="user_birthday"
-										placeholder="생년월일" name="user_birthday" type="date">
+										placeholder="생년월일" name="user_birthday" v-model="user_birthday" type="date">
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-sm-12">
-									<input class="form-control" id="job" v-model="job" placeholder="직업 or 학교"
+									<input class="form-control" id="job" v-model="job"  placeholder="직업 or 학교"
 										name="job" type="text">
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-sm-12">
-									<input class="form-control" id="career" placeholder="경력 or 학년"
+									<input class="form-control" id="career" v-model="user_career" placeholder="경력 or 학년"
 										name="career" type="text">
 								</div>
 							</div>
@@ -228,6 +240,8 @@
 							<div class="row">
 									<div class="col-sm-10">
 
+
+								
 
 										<button v-on:click="joingo" type="button"
 											class="btn btn-light btn-radius btn-brd grd1">가입하기</button>
@@ -260,8 +274,15 @@
 				member_pw : '',
 				user_id :'',
 				user_pw :'',
-				job : ''
-
+				job : '',
+				user_pw_cf :'',
+				user_tel :'',
+				user_name :'',
+				user_birthday:'',
+				user_career:'',
+				user_img:''
+					
+				
 			},
 
 			methods : {
@@ -308,9 +329,15 @@
 
 				axios.get('joingo.do', {
 					params : {
-						user_id : this.user_id,
-						user_pw : this.user_pw,
-						job : this.job
+						user_id :this.user_id,
+						user_pw :this.user_pw,
+						job : this.job,
+						user_pw_cf :this.user_pw_cf,
+						user_tel :this.user_tel,
+						user_name :this.user_name,
+						user_birthday:this.user_birthday,
+						user_career:this.user_career,
+						user_img:this.user_img
 						
 					}
 

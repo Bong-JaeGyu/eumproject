@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService{
 	
 	
 	public void joinMember(HashMap<String, Object>params) {
-		if(params.get("m_pw").equals(params.get("m_pw_CHECK")))
+		if(params.get("member_pw").equals(params.get("user_pw_cf")))
 			dao.insertMember(params);
 	}
 	

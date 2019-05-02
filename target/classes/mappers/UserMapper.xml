@@ -12,10 +12,18 @@
     
     
     	<insert id="insertMember" parameterType="java.util.HashMap">
-		insert into member
-		values(
-		#{member_id}, #{member_pw}, #{user_name}, #{user_age}, #{user_img}, #{mentor}, sysdate(),sysdate(), #{login},#{job},#{career}, #{school}, #{grade} )
+		
+		
+		INSERT INTO member (`member_id`, `member_pw`, `user_name`, `user_age`, `user_birthday`, `user_img`, `mentor`, `join_day`, `login_date`, `login`, `job`, `career`, `school`, `grade`,`user_tel`) 
+		VALUES (#{member_id}, #{member_pw}, #{user_name}, #{user_age}, #{user_birthday}, #{user_img}, #{mentor}, sysdate(), 
+		sysdate(), #{1}, #{job}, #{career}, #{school}, #{grade},#{user_tel});
+		
+		
+		
+		
 	</insert>
+	
+	
 	
 	<update id="updateMember" parameterType="java.util.HashMap">
 		update member set

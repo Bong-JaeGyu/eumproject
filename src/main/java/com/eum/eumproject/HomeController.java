@@ -130,14 +130,33 @@ public class HomeController {
 	@RequestMapping(value = "joingo.do" ) 
 //	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
 	public void joingo(String user_id,  String user_pw, String job, Model model, HttpServletResponse resp, HttpSession session,String user_pw_cf,String user_tel,
-			String user_name,String user_birthday,String user_career ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+			String user_name,String user_birthday,String user_career,int mentor) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
 		
 
 		System.out.println("user_id"+user_id+"        user_pw        "+user_pw+"    job    " +job+"userpwcf      "+user_pw_cf+"       usertel"+user_tel+"         username"+user_name
-				+"          userbirthday"+user_birthday+"           user+career"+user_career);
+				+"          userbirthday"+user_birthday+"           user+career"+user_career+"                  mentor"+mentor);
 		
 		 
+		HashMap<String, Object>member = new HashMap<String, Object>();
 		
+		member.put("member_id", user_id);
+		member.put("member_pw", user_pw);
+		member.put("user_pw_cf", user_pw_cf);
+		member.put("user_tel", user_tel);
+		member.put("user_name", user_name);
+		member.put("user_birthday", user_birthday);
+		if(mentor==1) {
+			member.put("grade", user_career);
+			member.put("school", job);
+		}else {
+			member.put("career", user_career);
+			member.put("job", job);
+		}
+		
+		
+	
+		member.put("mentor", mentor);
+		service.joinMember(member);
 		
 		
 		

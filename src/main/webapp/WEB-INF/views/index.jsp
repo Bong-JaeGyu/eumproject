@@ -138,9 +138,9 @@
 
 								<div class="form-group" style="text-align: center">
 									<div class="col-sm-12">
-										회원 유형 : <input type="radio" name="lecture" value="html"
-											checked> 멘티 <input type="radio" name="lecture"
-											value="css"> 멘토
+										회원 유형 : <input type="radio" v-model="mentor" name="mentor" value=1 checked="checked"
+											> 멘티 <input type="radio" name="mentor"
+											v-model="mentor" value=2> 멘토
 
 									</div>
 									<br>
@@ -280,8 +280,8 @@
 				user_name :'',
 				user_birthday:'',
 				user_career:'',
-				user_img:''
-					
+				user_img:'',
+				mentor:''	
 				
 			},
 
@@ -337,7 +337,8 @@
 						user_name :this.user_name,
 						user_birthday:this.user_birthday,
 						user_career:this.user_career,
-						user_img:this.user_img
+						user_img:this.user_img,
+						mentor:this.mentor
 						
 					}
 
@@ -411,7 +412,7 @@
 								<a class="dropdown-item" href="blog.html">Blog </a> <a
 									class="dropdown-item" href="blog-single.html">Blog single </a>
 							</div></li>
-						<li class="nav-item"><a class="nav-link" href="teachers.html">마이페이지</a></li>
+						<li class="nav-item"><a class="nav-link" href="contact.html">마이페이지</a></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">

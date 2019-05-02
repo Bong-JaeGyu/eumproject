@@ -26,6 +26,7 @@ public class UserDAOImpl implements UserDAO{
 		mapper.insertMember(params);
 		// TODO Auto-generated method stub
 		return false;
+		
 	}
 
 	@Override

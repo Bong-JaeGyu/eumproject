@@ -24,6 +24,11 @@
 	</insert>
 	
 	
+	<select id="selectMsg" parameterType="String" resultType="java.util.HashMap">
+	select * from message where receive_id = #{member_id}
+	
+	</select>
+	
 	
 	<update id="updateMember" parameterType="java.util.HashMap">
 		update member set

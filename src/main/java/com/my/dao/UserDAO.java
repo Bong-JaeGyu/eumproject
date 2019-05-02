@@ -19,6 +19,7 @@ public interface UserDAO {
 
 	public List<HashMap<String, Object>> selectAll();
 	
+	public List<HashMap<String, Object>> selectMsg(String member_id);
 	
 }
 

@@ -14,5 +14,8 @@ public interface UserService {
     
     public void updateMember(HashMap<String,Object>params);
     
+    
+    public List<HashMap<String, Object>> getMsgList(String member_id);
+    
 }
 

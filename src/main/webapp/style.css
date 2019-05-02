@@ -3699,6 +3699,13 @@ a.link-style3 {
     right: 20px;
     top: 20px;
 }
+.comment-reply-link2 {
+    position: absolute;
+    right: 20px;
+    top: 40px;
+}
+
+
 .children{
 	list-style: none;
 }

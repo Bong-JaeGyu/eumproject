@@ -412,7 +412,7 @@
 								<a class="dropdown-item" href="blog.html">Blog </a> <a
 									class="dropdown-item" href="blog-single.html">Blog single </a>
 							</div></li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">마이페이지</a></li>
+						<li class="nav-item"><a class="nav-link" href="mypage.do">마이페이지</a></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">

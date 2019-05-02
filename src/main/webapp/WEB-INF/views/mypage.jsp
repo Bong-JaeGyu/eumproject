@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+    
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -201,7 +206,7 @@
         <div class="container">
 
             <div class="section-title text-center">
-                <h3>~~님 반갑습니다<!DOCTYPE html></h3>
+                <h3><%=session.getAttribute("id") %>님의 마이페이지<!DOCTYPE html></h3>
                 <p class="lead">~~</p>
             </div><!-- end title -->
 			<div class="modal-content">
@@ -210,7 +215,7 @@
 						<!-- Nav tabs -->
 
 						
-							<ul class="nav nav-tabs" sty>
+							<ul class="nav nav-tabs" >
 								<li><a class="active" href="#msgbox"data-toggle="tab">쪽지함</a></li>
 								<li><a href="#mentorbox" data-toggle="tab">멘토</a></li>
 								<li><a href="#myinfo" data-toggle="tab">나의 정보</a></li>
@@ -218,32 +223,41 @@
 		
 							</ul>
 						
-
+							
+	      
+	 
 
 
 							<div class="tab-pane" id="msgbox">
 								
 									
-									
+									 <c:forEach items="${msgList}" var="msg">
 										<div id="app-4">
 										<ul class="children" >
-												<li class="comment" v-for="msg in msgs">
+												<li class="comment">
 													<div class="avatar"><img alt="" src="images/avatar-03.jpg" class="avatar"></div>
 													<div class="comment-container">
-														<h5 class="comment-author"><a href="#">{{ msg.member_id }}</a></h5>
-														<div class="comment-meta"><a href="#" class="comment-date link-style1">{{msg.senddate}}</a><a class="comment-reply-link link-style3" href="#respond" >쪽지보내기 »</a><a class="comment-reply-link2 link-style3" href="#respond">삭제하기 »</a></div>
+														<h5 class="comment-author"><a href="#">${msg.send_id}</a></h5>
+														<div class="comment-meta"><a href="#" class="comment-date link-style1">${msg.send_date}</a>
+														<a class="comment-reply-link link-style3" href="#respond">쪽지보내기 »</a>
+													
 														
+														<a class="comment-reply-link2 link-style3" href="#respond"> 삭제하기 »</a>
+														</div>
+													
 														<div class="comment-body">
-															<p>{{ msg.text }}</p>
+															<p>${msg.content}</p>
 														</div>
 													</div>
 												</li>
 											</ul>
 										</div>	
+										
+										  </c:forEach>
 							</div>
 
 
-
+					 
 
 
 <script>

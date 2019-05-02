@@ -72,6 +72,13 @@ public class UserServiceImpl implements UserService{
 			dao.updateMember(params);
 		
 	}
+
+
+	@Override
+	public List<HashMap<String, Object>> getMsgList(String member_id) {
+		// TODO Auto-generated method stub
+		return dao.selectMsg(member_id);
+	}
 	
 }
 

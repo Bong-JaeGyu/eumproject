@@ -57,7 +57,18 @@ public class UserDAOImpl implements UserDAO{
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		// TODO Auto-generated method stub
 		return mapper.selectAll();
-	}	
+	}
+
+	@Override
+	public List<HashMap<String, Object>> selectMsg(String member_id) {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		// TODO Auto-generated method stub
+		return mapper.selectMsg(member_id);
+	}
+
+	
+	
+	
 	
 	
 	

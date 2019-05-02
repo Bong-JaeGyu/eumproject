@@ -88,15 +88,38 @@ public class HomeController {
 		return new ModelAndView("/loginFail");
 	}
 	
-	// loginSuccess 페이지 실행하도록
-	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
-	public ModelAndView loginSuccessPage(HttpServletRequest request, Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-		return new ModelAndView("login");
-	}
+	@RequestMapping(value = "mypage.do", method = RequestMethod.GET)
+	public ModelAndView loginSuccessPage(HttpServletRequest request, Model model, HttpSession session){  
 		
+		
+		if(session.getAttribute("id")==null) {
+			return new ModelAndView("index");
+		};
+		
+		 List<HashMap<String, Object>> msgList=service.getMsgList((String)session.getAttribute("id"));
+		System.out.println(msgList);
+		
+		
+		model.addAttribute("msgList", msgList);
+		
+		return new ModelAndView("mypage");
+	}
+
+
+	
+	
+	
+	
+	
+	
 	// loginFail 페이지 실행하도록
 	@RequestMapping(value = "/loginFail", method = RequestMethod.GET)
 	public ModelAndView loginFailPage(HttpServletRequest request, Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+		
+		
+		
+		
+		
 		return new ModelAndView("login");
 	}
 

@@ -21,5 +21,8 @@ public interface UserDAO {
 	
 	public List<HashMap<String, Object>> selectMsg(String member_id);
 	
+	public List<HashMap<String, Object>> selectmentor(String member_id);
+	
+	
 }
 

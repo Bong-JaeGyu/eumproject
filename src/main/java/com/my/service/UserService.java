@@ -17,5 +17,7 @@ public interface UserService {
     
     public List<HashMap<String, Object>> getMsgList(String member_id);
     
+    public List<HashMap<String, Object>> getMentorList(String member_id);
+    
 }
 

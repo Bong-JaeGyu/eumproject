@@ -24,6 +24,16 @@
 	</insert>
 	
 	
+	<select id="selectmentor" parameterType="String" resultType="java.util.HashMap">
+	select * from mentoring where mentee_id = #{mentee_id}
+	
+	</select>
+	
+	
+	
+	
+	
+	
 	<select id="selectMsg" parameterType="String" resultType="java.util.HashMap">
 	select * from message where receive_id = #{member_id}
 	
@@ -44,6 +54,7 @@
 	<select id="selectOne" parameterType="String" resultType="java.util.HashMap">
 		select * from member where member_id = #{member_id}
 	</select>
+	
 	<select id="selectAll" resultType="java.util.HashMap">
 		select * from member
 	</select>

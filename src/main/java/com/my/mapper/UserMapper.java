@@ -6,6 +6,8 @@ import com.my.dto.UserVO;
 
 public interface UserMapper {
     public List<UserVO>selectUser();
+    
+    
     public boolean insertMember(HashMap<String, Object> params);
 
 	public boolean updateMember(HashMap<String, Object> params);
@@ -17,4 +19,10 @@ public interface UserMapper {
 	public List<HashMap<String, Object>> selectAll();
     
 	public List<HashMap<String, Object>> selectMsg(String member_id);
+	
+	
+	public List<HashMap<String, Object>> selectmentor(String member_id);
+	
+	
+	
 }

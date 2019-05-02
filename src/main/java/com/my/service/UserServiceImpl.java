@@ -79,6 +79,13 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return dao.selectMsg(member_id);
 	}
+
+
+	@Override
+	public List<HashMap<String, Object>> getMentorList(String member_id) {
+		// TODO Auto-generated method stub
+		return dao.selectmentor(member_id);
+	}
 	
 }
 

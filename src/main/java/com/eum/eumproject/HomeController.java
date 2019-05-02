@@ -97,10 +97,17 @@ public class HomeController {
 		};
 		
 		 List<HashMap<String, Object>> msgList=service.getMsgList((String)session.getAttribute("id"));
-		System.out.println(msgList);
+//		System.out.println(msgList);
 		
-		
+		 List<HashMap<String, Object>> mentorList=service.getMentorList((String)session.getAttribute("id"));
+		 HashMap<String, Object> memberinfo=service.getMemberInfo((String)session.getAttribute("id"));
+		 System.out.println(msgList);
+		 System.out.println(mentorList);
+		 System.out.println(memberinfo);
+		 
 		model.addAttribute("msgList", msgList);
+		model.addAttribute("mentorList", mentorList);
+		model.addAttribute("memberinfo", memberinfo);
 		
 		return new ModelAndView("mypage");
 	}

@@ -66,6 +66,13 @@ public class UserDAOImpl implements UserDAO{
 		return mapper.selectMsg(member_id);
 	}
 
+	@Override
+	public List<HashMap<String, Object>> selectmentor(String member_id) {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		// TODO Auto-generated method stub
+		return mapper.selectmentor(member_id);
+	}
+
 	
 	
 	

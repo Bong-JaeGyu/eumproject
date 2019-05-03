@@ -55,7 +55,7 @@
 </head>
 <body class="host_version">
 
-	<%=session.getAttribute("id")%>
+<%-- 	<%=session.getAttribute("id")%>
 
 	<div id="app11" v-bind="message">{{ message }}님</div>
 
@@ -69,7 +69,7 @@
 				message : '로그인 안됨'
 			}
 		})
-	</script>
+	</script> --%>
 
 	<!-- Modal -->
 	<div class="modal fade" id="login" tabindex="-1" role="dialog"
@@ -398,12 +398,12 @@
 							href="index.html">메인</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">MLOG</a></li>
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
+							class="nav-link dropdown-toggle" href="careerApi.do" id="dropdown-a"
 							data-toggle="dropdown">진로정보</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="course-grid-2.html">진로심리검사</a> <a
-									class="dropdown-item" href="course-grid-3.html">학과정보</a> <a
-									class="dropdown-item" href="course-grid-4.html">정보찾기</a>
+								<a class="dropdown-item" href="careerApi.do">진로심리검사</a> <a
+									class="dropdown-item" href="careerApi.do">학과정보</a> <a
+									class="dropdown-item" href="careerApi.do">정보찾기</a>
 							</div></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="dropdown-a"

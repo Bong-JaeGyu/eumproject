@@ -1,5 +1,12 @@
 package com.my.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.inject.Inject;
@@ -57,6 +64,81 @@ public class UserServiceImpl implements UserService{
 //			return false;
 //		
 //	}	
+	
+	
+	public String careerApi1() throws IOException {
+		
+		
+		
+		StringBuilder urlBuilder = new StringBuilder("http://inspct.career.go.kr/openapi/test/questions?apikey=ad555c902fb066bbcc3f4c2559622b92&q=5");
+		URL url = new URL(urlBuilder.toString());
+		 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		  conn.setRequestMethod("GET");
+	        conn.setRequestProperty("Content-type", "application/json");
+	        System.out.println("Response code: " + conn.getResponseCode());
+	        BufferedReader rd;
+	        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+	            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	        } else {
+	            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+	        }
+	        StringBuilder sb = new StringBuilder();
+	
+	        String line;
+	        while ((line = rd.readLine()) != null) {
+	        
+	            sb.append(line);
+	     
+	        }
+	        rd.close();
+	        conn.disconnect();
+	        line=null;
+	        line=sb.toString();
+
+	        String json= json= " { pages: [ ";
+	        
+            //질문만 파싱//
+	        String[] arr1 = line.split("\"question\":\"");        
+	        for(int i = 0 ; i < arr1.length ; i++){
+	        	
+	        	arr1[i]=arr1[i].substring(0,arr1[i].lastIndexOf(".")+1);
+	        	
+	        }
+	                
+
+	        for(int i=1;i<arr1.length;i++) {
+	        	
+	        	if(i%10==1) {
+	        		json= json+"{ questions: [ { type: \"matrix\",  name: \"Quality\",  isRequired: true, title: \"다음 문항들은 여러분이 일상생활에서 실제 경험해 볼 수 있는 활동들입니다. 그 활동들을 얼마나 좋아하는지 생각해 보고 답하십시오.\","
+	        				+ " columns: [  {value: 1, text: \"매우싫다\"  }, { value: 2,   text: \"약간싫다\"  }, {  value: 3,    text: \"약간좋다\"   }, {value: 4, text: \"매우좋다\" }, ],"
+	        				+ "  rows: [";
+	        		
+	        	};
+	        	json= json+"{ value:"+i+", text: '"+arr1[i]+"' },";
+	        	
+	        	if(i%10==0) {
+	        		json=json+"  ] }"
+	        				+ "]},";
+	        	}
+	        	
+	        	
+	        	if(i==arr1.length-1) {
+	        		
+	        		json=json+"] }],  }]}; ";
+	        	}
+	        	
+	        }
+	        
+
+		
+		return json;
+	}
+	
+	
+	
+	
+	
+	
 	
 	public HashMap<String, Object>getMemberInfo(String m_id){
 	

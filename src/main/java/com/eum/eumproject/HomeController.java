@@ -4,6 +4,7 @@ package com.eum.eumproject;
 
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -64,6 +65,48 @@ public class HomeController {
 		System.out.println(id+pass);
 		return new ModelAndView("login");
 	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "careerApi.do", method = RequestMethod.GET)
+	public ModelAndView careerApiPage(HttpServletRequest request, Model model) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	
+	
+		return new ModelAndView("careerApi");
+	}
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "careerApigo.do",produces = "application/text; charset=UTF-8")
+//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void careerApigo(Model model, HttpServletResponse resp) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	
+		String result=service.careerApi1();
+	
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("UTF-8");
+		System.out.println(result);
+		
+		
+		
+		resp.getWriter().println(result);
+		
+//		return new ModelAndView("login");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// 로그인 페이지에서 아이디, 비번 입력하고나서 로그인 유무 정하는 페이지
 	@RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
@@ -130,8 +173,8 @@ public class HomeController {
 		return new ModelAndView("login");
 	}
 
-//	@RequestMapping(value = "logingo.do", method = RequestMethod.POST)
-//	@RequestMapping(value = "index.do")
+	
+
 	@ResponseBody
 	@RequestMapping(value = "logingo.do" ) 
 //	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
@@ -154,6 +197,9 @@ public class HomeController {
 		
 //		return new ModelAndView("login");
 	}
+	
+	
+	
 	
 	
 	@ResponseBody

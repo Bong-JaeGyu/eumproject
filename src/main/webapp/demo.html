@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<!-- Basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Site Metas -->
+<title>SmartEDU - Education Responsive HTML5 Template</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Site Icons -->
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="style.css">
+<!-- ALL VERSION CSS -->
+<link rel="stylesheet" href="css/versions.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="css/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/custom.css">
+
+<!-- Modernizer for Portfolio -->
+<script src="js/modernizer.js"></script>
+
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>Vue.config.devtools = true;</script>
+<link href="https://surveyjs.azureedge.net/1.0.83/survey.css" type="text/css" rel="stylesheet"/>
+<script src="https://surveyjs.azureedge.net/1.0.83/survey.vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
+
+
+
+</head>
+<body class="host_version">
+
+
+
+    <div id="contact" class="section wb">
+		<div class="container">
+            
+                <div id="surveyElement">
+                        <survey :survey='survey'/>
+                    </div>
+                    <div id="surveyResult"></div>
+            
+                    
+
+
+
+            </div>
+
+    </div>
+
+<script>
+
+    var json = {};
+
+function apigo() {
+    
+  axios.get('careerApigo.do', {
+                        params: {
+                            
+                        }
+                      
+                      }).then(function(data) {
+
+
+
+                            
+                            console.log(data.data);
+
+                        json=JSON.parse(data.data);
+                      
+                      })
+
+                      console.log(json);
+};
+
+apigo();
+
+
+setTimeout(function(){
+    
+
+        console.log(json);
+
+    Survey
+    .StylesManager
+    .applyTheme("orange");
+
+    
+
+    window.survey = new Survey.Model(json);
+
+
+
+survey
+    .onComplete
+    .add(function (result) {
+        document
+            .querySelector('#surveyResult')
+            .innerHTML = "result: " + JSON.stringify(result.data);
+
+           
+    });
+
+var app = new Vue({
+    el: '#surveyElement',
+    data: {
+        survey: survey
+    }
+});
+
+function animate(animitionType, duration) {
+    if (!duration) 
+        duration = 1000;
+    var element = document.getElementById("surveyElement");
+    $(element).velocity(animitionType, {duration: duration});
+}
+
+var doAnimantion = true;
+survey
+    .onCurrentPageChanging
+    .add(function (sender, options) {
+        if (!doAnimantion) 
+            return;
+        options.allowChanging = false;
+        setTimeout(function () {
+            doAnimantion = false;
+            sender.currentPage = options.newCurrentPage;
+            doAnimantion = true;
+        }, 500);
+        animate("slideUp", 500);
+    });
+survey
+    .onCurrentPageChanged
+    .add(function (sender) {
+        animate("slideDown", 500);
+    });
+survey
+    .onCompleting
+    .add(function (sender, options) {
+        if (!doAnimantion) 
+            return;
+        options.allowComplete = false;
+        setTimeout(function () {
+            doAnimantion = false;
+            sender.doComplete();
+            doAnimantion = true;
+        }, 500);
+        animate("slideUp", 500);
+    });
+animate("slideDown", 500);
+    
+    
+    
+    },3000); 
+                        
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

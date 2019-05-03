@@ -1,5 +1,6 @@
 package com.my.service;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import com.my.dto.UserVO;
@@ -18,6 +19,8 @@ public interface UserService {
     public List<HashMap<String, Object>> getMsgList(String member_id);
     
     public List<HashMap<String, Object>> getMentorList(String member_id);
+    
+    public String careerApi1() throws IOException;
     
 }
 

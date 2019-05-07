@@ -223,7 +223,7 @@
 	<div class="all-title-box">
 		<div class="container text-center">
 			<h1>
-                마이페이지<span class="m_1">나의 공간</span>
+                진로검사<span class="m_1">진로검사</span>
                 
 
 
@@ -238,7 +238,7 @@
 	
 
                 
-               <iframe src="demo.html" style="height:100%; width:100%;" scrolling="no" ></iframe>
+               <iframe src="demo2.html" style="height:100%; width:100%;" scrolling="no" ></iframe>
 
 
     </div>

@@ -17,6 +17,11 @@ import java.util.List;
 
 
 public class careerApi {
+	
+	
+	static {
+		System.out.println("**************************************************************** ");
+	} // static initializer for test
 
 	 
 
@@ -40,7 +45,9 @@ public class careerApi {
 	            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
 	        }
 	        StringBuilder sb = new StringBuilder();
-	
+	        
+	        String s="pages: [ { questions: [ { type: \"matrix\",  name: \"Quality\",  isRequired: true, title: \"다음 문항들은 여러분이 일상생활에서 실제 경험해 볼 수 있는 활동들입니다. 그 활동들을 얼마나 좋아하는지 생각해 보고 답하십시오.\",";
+	        System.out.println(s.length());
 	        String line;
 	        while ((line = rd.readLine()) != null) {
 	        
@@ -94,17 +101,17 @@ public class careerApi {
 	        	
 	        	if(i==arr1.length-1) {
 	        		
-	        		json=json+"] }],  }]; ";
+	        		json=json+"] }],  }] ";
 	        	}
 	        	
 	        }
 	        
-	        
+	        System.out.println("tttttttttt");
 	        
 	        System.out.println(json);
 	       
 	        
-	        
+	        System.out.println("tttttttttt");
 	        
 	    
 //	        var json = { pages: [ {

@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService{
 	        line=null;
 	        line=sb.toString();
 
-	        String json= json= " { pages: [ ";
+	        String json= json= " { \"pages\": [ ";
 	        
             //질문만 파싱//
 	        String[] arr1 = line.split("\"question\":\"");        
@@ -109,28 +109,29 @@ public class UserServiceImpl implements UserService{
 	        for(int i=1;i<arr1.length;i++) {
 	        	
 	        	if(i%10==1) {
-	        		json= json+"{ questions: [ { type: \"matrix\",  name: \"Quality\",  isRequired: true, title: \"다음 문항들은 여러분이 일상생활에서 실제 경험해 볼 수 있는 활동들입니다. 그 활동들을 얼마나 좋아하는지 생각해 보고 답하십시오.\","
-	        				+ " columns: [  {value: 1, text: \"매우싫다\"  }, { value: 2,   text: \"약간싫다\"  }, {  value: 3,    text: \"약간좋다\"   }, {value: 4, text: \"매우좋다\" }, ],"
-	        				+ "  rows: [";
+	        		json= json+"{ \"questions\": [ { \"type\": \"matrix\",  \"name\": \""+i*100+" \",  \"isRequired\": true, \"title\": \"다음 문항들은 여러분이 일상생활에서 실제 경험해 볼 수 있는 활동들입니다. 그 활동들을 얼마나 좋아하는지 생각해 보고 답하십시오.\" , "
+	        				+ " \"columns\": [  {\"value\": 1, \"text\": \"매우싫다\"  }, { \"value\": 2,   \"text\": \"약간싫다\"  }, {  \"value\": 3,    \"text\": \"약간좋다\"   }, {\"value\": 4, \"text\": \"매우좋다\" } ] , \"rows\" : [ ";
 	        		
 	        	};
-	        	json= json+"{ value:"+i+", text: '"+arr1[i]+"' },";
+	        	
 	        	
 	        	if(i%10==0) {
-	        		json=json+"  ] }"
-	        				+ "]},";
-	        	}
+	        		json=json+" { \"value\" : "+i+", \"text\" : \""+arr1[i]+" \" }  ] } ] },";
+	        				
+	        	}else if(i%10!=0&&i!=arr1.length-1){
+	        		json= json+"{ \"value\":"+i+", \"text\": \""+arr1[i]+"\" },";
+	        	};
 	        	
 	        	
 	        	if(i==arr1.length-1) {
 	        		
-	        		json=json+"] }],  }]}; ";
+	        		json=json+" { \"value\" : "+i+", \"text\" : \""+arr1[i]+" \"  }  ] } ] }   ] }";
 	        	}
 	        	
 	        }
 	        
-
-		
+	        
+		System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 		return json;
 	}
 	

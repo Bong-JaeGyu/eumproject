@@ -1,6 +1,5 @@
-
-    
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,18 +34,19 @@
     <!-- Modernizer for Portfolio -->
     <script src="js/modernizer.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+	Vue.config.devtools = true;
+</script>
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script>Vue.config.devtools = true;</script>
-
-
 
 </head>
 <body class="host_version"> 
@@ -196,143 +196,270 @@
 	
 	<div class="all-title-box">
 		<div class="container text-center">
-			<h1>마이페이지<span class="m_1">나의 공간</span></h1>
+			<h1>MLOG<span class="m_1">멘토의 공간</span></h1>
 		</div>
 	</div>
 	
-    <div id="contact" class="section wb">
+	
+	
+	
+	
+	
+	
+    <div id="overviews" class="section wb">
         <div class="container">
-
-            <div class="section-title text-center">
-                <h3>~~님의 마이페이지</h3>
-                <p class="lead">~~</p>
-            </div><!-- end title -->
-			<div class="modal-content">
-					
-					<div class="modal-body customer-box">
-						<!-- Nav tabs -->
-
-						
-							<ul class="nav nav-tabs" >
-								<li><a class="active" href="#msgbox"data-toggle="tab">쪽지함</a></li>
-								<li><a href="#mentorbox" data-toggle="tab">멘토</a></li>
-								<li><a href="#myinfo" data-toggle="tab">나의 정보</a></li>
-		
-		
-							</ul>
-						
-							
-	      
-	 
-
-
-							<div class="tab-pane" id="msgbox">
-								
-									
-									 <c:forEach items="${msgList}" var="msg">
-										<div id="app-4">
-										<ul class="children" >
-												<li class="comment">
-													<div class="avatar"><img alt="" src="images/avatar-03.jpg" class="avatar"></div>
-													<div class="comment-container">
-														<h5 class="comment-author"><a href="#">${msg.send_id}</a></h5>
-														<div class="comment-meta"><a href="#" class="comment-date link-style1">${msg.send_date}</a>
-														<a class="comment-reply-link link-style3" href="#respond">쪽지보내기 »</a>
-													
-														
-														<a class="comment-reply-link2 link-style3" href="#respond">삭제하기 »</a>
-														</div>
-													
-														<div class="comment-body">
-															<p>${msg.content}</p>
-														</div>
-													</div>
-												</li>
-											</ul>
-										</div>	
-										
-										  </c:forEach>
+            <div class="row"> 
+                <div class="col-lg-9 blog-post-single">
+                    <div class="blog-item">
+						<div class="image-blog">
+							<img src="images/blog_single.jpg" alt="" class="img-fluid">
+						</div>
+						<div class="post-content">
+							<div class="post-date">
+								<span class="day">30</span>
+								<span class="month">Nov</span>
 							</div>
-
-
-					 
-
-
-<script>
-var app4 = new Vue({
-  el: '#app-4',
-  data: {
-    msgs: [
-      { member_id:'user1', membor_img:'',senddate:'2019-05-01',text: '111111' },
-	  { member_id:'user2', membor_img:'',senddate:'2019-05-03',text: '222222' },
-	  { member_id:'user3', membor_img:'',senddate:'2019-05-02',text: '3333333' },
-    ]
-  }
-})
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-						
-						<!-- Tab panes -->
-						
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+							<div class="meta-info-blog">
+								<span><i class="fa fa-calendar"></i> <a href="#">{{board_date}}</a> </span>
+								<span><i class="fa fa-tag"></i>  <a href="#">{{board_cate}}</a> </span>
+								<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
+							</div>
+							<div class="blog-title">
+								<h2><a href="#" title="">제목 : {{board_title}}</a></h2>
+							</div>
+							<div class="blog-desc" v-html="board_content">
+								
+								{{board_content}}
+								
+							</div>
+							{{board_title}}							
 						</div>
 					</div>
+
+	
+					
+					<div class="blog-author">
+						<div class="author-bio">
+							<h3 class="author_name"><a href="#">{{board_writer}}</a></h3>
+							<h5>CEO at <a href="#">SmartEDU</a></h5>
+							<p class="author_det">
+								Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod tempor incididunt  ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus omnis saperet docendi nec, eos ea alii molestiae aliquand.
+							</p>
+						</div>
+						<div class="author-desc">
+							<img src="images/author.jpg" alt="about author">
+							<ul class="author-social">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-skype"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<div class="blog-comments">
+						<h4>Comments (3)</h4>
+						<div id="comment-blog">
+							<ul class="comment-list">
+								<li class="comment">
+									<div class="avatar"><img alt="" src="images/avatar-01.jpg" class="avatar"></div>
+									<div class="comment-container">
+										<h5 class="comment-author"><a href="#">John Smith</a></h5>
+										<div class="comment-meta">
+											<a href="#" class="comment-date link-style1">February 22, 2015</a>
+											<a class="comment-reply-link link-style3" href="#respond">Reply »</a>
+										</div>
+										<div class="comment-body">
+											<p>Ne omnis saperet docendi nec, eos ea alii molestiae aliquand. Latine fuisset mele, mandamus atrioque eu mea, wi forensib argumentum vim an. Te viderer conceptam sed, mea et delenit fabellas probat.</p>
+										</div>
+									</div>
+								</li>
+
+								
+								<li class="comment">
+									<div class="avatar"><img alt="" src="images/avatar-02.jpg" class="avatar"></div>
+									<div class="comment-container">
+										<h5 class="comment-author"><a href="#">John Smith</a></h5>
+										<div class="comment-meta">
+											<a href="#" class="comment-date link-style1">February 22, 2015</a>
+											<a class="comment-reply-link link-style3" href="#respond">Reply »</a>
+										</div>
+										<div class="comment-body">
+											<p>Ne omnis saperet docendi nec, eos ea alii molestiae aliquand. Latine fuisset mele, mandamus atrioque eu mea, wi forensib argumentum vim an. Te viderer conceptam sed, mea et delenit fabellas probat.</p>
+										</div>
+									</div>
+									<ul class="children">
+										<li class="comment">
+											<div class="avatar"><img alt="" src="images/avatar-03.jpg" class="avatar"></div>
+											<div class="comment-container">
+												<h5 class="comment-author"><a href="#">Thomas Smith</a></h5>
+												<div class="comment-meta"><a href="#" class="comment-date link-style1">February 14, 2015</a><a class="comment-reply-link link-style3" href="#respond">Reply »</a></div>
+												<div class="comment-body">
+													<p>Labores pertinax theophrastus vim an. Error ditas in sea, per no omnis iisque nonumes. Est an dicam option, ad quis iriure saperet nec, ignota causae inciderint ex vix. Iisque qualisque imp duo eu, pro reque consequ untur. No vero laudem legere pri, error denique vis ne, duo iusto bonorum.</p>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="comments-form">
+						<h4>댓글남기기</h4>
+						<div class="comment-form-main">
+							<form action="#">
+								<div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<input class="form-control" name="commenter-name" placeholder="Name" id="commenter-name" type="text">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<input class="form-control" name="commenter-email" placeholder="Email" id="commenter-email" type="text">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<input class="form-control" name="commenter-url" placeholder="Website URL" id="commenter-url" type="text">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea class="form-control" name="commenter-message" placeholder="Message" id="commenter-message" cols="30" rows="2"></textarea>
+										</div>
+									</div>
+									<div class="col-md-12 post-btn">
+										<button class="hover-btn-new orange"><span>Post Comment</span></button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					
+                </div><!-- end col -->
+				<div class="col-lg-3 col-12 right-single">
+					<div class="widget-search">
+						<div class="site-search-area">
+							<form method="get" id="site-searchform" action="#">
+								<div>
+									<input class="input-text form-control" name="search-k" id="search-k" placeholder="Search keywords..." type="text">
+									<input id="searchsubmit" value="Search" type="submit">
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="widget-categories">
+						<h3 class="widget-title">카테고리</h3>
+						<ul>
+							<li><a href="#">Political Science</a></li>
+							<li><a href="#">Business Leaders Guide</a></li>
+							<li><a href="#">Become a Product Manage</a></li>
+							<li><a href="#">Language Education</a></li>
+							<li><a href="#">Micro Biology</a></li>
+							<li><a href="#">Social Media Management</a></li>
+						</ul>
+					</div>
+					<div class="widget-tags">
+						<h3 class="widget-title">Tags</h3>
+						<ul class="tags">
+							<li><a href="#"><b>{{board_tag}}</b></a></li>
+							<li><a href="#"><b>jquery</b></a></li>
+							<li><a href="#">corporate</a></li>
+							<li><a href="#">portfolio</a></li>
+							<li><a href="#">css3</a></li>
+							<li><a href="#"><b>theme</b></a></li>
+							<li><a href="#"><b>html5</b></a></li>
+							<li><a href="#"><b>mysql</b></a></li>
+							<li><a href="#">multipurpose</a></li>
+							<li><a href="#">responsive</a></li>
+							<li><a href="#">premium</a></li>
+							<li><a href="#">javascript</a></li>
+							<li><a href="#"><b>Best jQuery</b></a></li>
+						</ul>
+					</div>
 				</div>
-
-
-
-
-
-
-
-
-
-
-
-            <!-- <div class="mypage" id="mypage_content">
-				<div id="mypage_image">
-					<img src="" alt="사진없음">
-				</div>
-				
-				<ul class="mypage_ul">
-					<li class="mypage_li">나의 멘토</li>
-					<li class="mypage_li">관심 멘토</li>
-					<li class="mypage_li">알림</li>
-					<li class="mypage_li">회원정보</li>
-				</ul>
-
-				<div id="mypage_text">내용</div> -->
-
-
-
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
-	
-	<div class="parallax section dbcolor">
+
+
+
+	<script>			
+	var vm1 = new Vue({
+			el : '#overviews',
+			data : {
+				board_title: '',
+				board_content:'',
+				board_type : '',
+				board_writer :'test writer',
+				board_num :'2',
+				board_pw:'',
+				board_date:'',
+				board_hit:'',
+				board_own:'',
+				board_cate:'',
+				board_tag:''
+				
+			},
+			mounted : function () {
+			    // 
+			  
+			    
+		
+			    axios.get('boardload.do', {
+						params : {
+							board_num : this.board_num,
+							board_writer : this.board_writer
+						}
+
+					}).then(function(data){
+						
+						console.log(data.data);
+						
+						vm1.$data.board_title = data.data.board_title;
+						vm1.$data.board_type = data.data.board_type;
+						vm1.$data.board_pw = data.data.board_pw;
+						vm1.$data.board_date = data.data.board_date;
+						vm1.$data.board_cate = data.data.board_cate;
+						vm1.$data.board_num = data.data.board_num;
+						vm1.$data.board_writer = data.data.board_writer;
+						vm1.$data.board_own = data.data.board_own;
+						vm1.$data.board_hit = data.data.board_hit;
+						vm1.$data.board_content = data.data.board_content;
+						vm1.$data.board_tag = data.data.board_tag;
+						
+					});
+			    		
+					
+			  } 
+				
+		})				
+		
+	</script>						
+
+
+
+
+
+
+
+
+
+    <div class="parallax section dbcolor">
         <div class="container">
             <div class="row logos">
                 <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
@@ -426,12 +553,19 @@ var app4 = new Vue({
 
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCKjLTXdq6Db3Xit_pW_GK4EXuPRtnod4o"></script>
-	<!-- Mapsed JavaScript -->
-	<script src="js/mapsed.js"></script>
-	<script src="js/01-custom-places-example.js"></script>
     <!-- ALL PLUGINS -->
     <script src="js/custom.js"></script>
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

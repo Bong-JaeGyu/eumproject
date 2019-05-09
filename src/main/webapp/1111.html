@@ -1,0 +1,93 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<!-- Basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Site Metas -->
+<title>SmartEDU - Education Responsive HTML5 Template</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Site Icons -->
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="style.css">
+<!-- ALL VERSION CSS -->
+<link rel="stylesheet" href="css/versions.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="css/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/custom.css">
+
+<!-- Modernizer for Portfolio -->
+<script src="js/modernizer.js"></script>
+
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>Vue.config.devtools = true;</script>
+<link href="https://surveyjs.azureedge.net/1.0.83/survey.css" type="text/css" rel="stylesheet"/>
+<script src="https://surveyjs.azureedge.net/1.0.83/survey.vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
+
+
+
+</head>
+<body class="host_version">
+
+
+
+
+<script>
+
+   axios.post(
+	'http:/inspct.career.go.kr/openapi/test/report', 
+	{
+     	
+  "apikey": "ad555c902fb066bbcc3f4c2559622b92",
+  "qestrnSeq": "4",
+  "trgetSe": "100207",
+  "name": "ㅣ비밀",
+  "gender": "100323",
+  "school": "비밀",
+  "grade": "1",
+  "email": "",
+  "startDtm": 1550466291034,
+  "answers": "A1=1 A2=1 A3=3 A4=1 A5=1 A6=2 A7=1 A8=1 A9=2 A10=1 A11=4 A12=4 A13=5 A14=4 A15=4 A16=4 A17=4 A18=3 A19=1 A20=1 A21=1 A22=3 A23=3 A24=1 A25=3 A26=2 A27=2 A28=2 A29=3 A30=2 A31=4 A32=3 A33=1 A34=2 A35=3 A36=2 A37=2 A38=2 A39=3 A40=1 A41=1 A42=1 A43=2 A44=1 A45=3 A46=4 A47=2 A48=1 A49=4 A50=2 A51=3 A52=1 A53=3 A54=2 A55=3 A56=4 A57=2 A58=4 A59=3 A60=2 A61=3 A62=1 A63=3 A64=4 A65=1 A66=2 A67=1 A68=1 A69=1 A70=1 A71=2 A72=3 A73=4 A74=5 A76=3 A77=1 A78=2 A79=3 A80=1 A81=2 A82=3 A83=4 A84=1 A85=1 A86=1 A87=1 A88=2 A89=3 A90=1 A91=3 A94=1 A95=2 A96=2"          
+    }).then(function(result) {
+    	
+		alert(result);
+		console.log(result);
+    });
+   
+
+
+</script>
+
+
+
+
+</body>
+</html>

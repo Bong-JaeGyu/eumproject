@@ -28,8 +28,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.my.dto.BoardVO;
 import com.my.dto.UserVO;
 import com.my.service.UserService;
+import com.google.gson.*;
+
 
 @Controller
 public class HomeController {
@@ -99,7 +102,114 @@ public class HomeController {
 //		return new ModelAndView("login");
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "mlogWrite.do" ) 
+//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public ModelAndView mlogWrite(Model model, HttpServletResponse resp ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
 	
+		 
+		 
+		return new ModelAndView("mlogWrite");
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "mlogwritego.do" ) 
+//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void mlogwritego(String mlogtitle,  String mlogcontent, Model model, HttpServletResponse resp, HttpSession session) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+		
+	
+		
+		
+		HashMap<String, Object>board = new HashMap<String, Object>();
+		
+		board.put("board_title", mlogtitle);
+		board.put("board_writer", "test writer");
+		board.put("board_type", "mlog");
+		board.put("board_own", "test own");
+		board.put("board_pw", "test pw");
+		board.put("board_cate", "test cate");
+		board.put("board_content",mlogcontent);
+		
+		System.out.println(board.get("board_title"));
+		
+		service.writeboard(board);
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	@ResponseBody
+	@RequestMapping(value = "mlog.do" ) 
+//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public ModelAndView mlog(Model model, HttpServletResponse resp ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	
+		 
+		 
+		return new ModelAndView("mlog");
+
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "boardload.do",produces = "application/text; charset=UTF-8" ) 
+//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void boardload(String board_num, String board_writer,Model model, HttpServletResponse resp ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("UTF-8");
+		
+			BoardVO board= new BoardVO();
+			board.setBoard_num(board_num);
+			board.setBoard_writer(board_writer);
+		 HashMap<String, Object> boardinfo=service.getboard(board);
+		
+		 System.out.println(boardinfo);
+		
+		 Gson gson=new Gson();
+		 String result=gson.toJson(boardinfo);
+		 System.out.println(result);
+		 resp.getWriter().println(result);
+	}
+	
+	
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "careerApiresult.do" ) 
+//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void careerApiresult(String result, Model model, HttpServletResponse resp) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	
+		System.out.println("들어옴");
+		System.out.println(result);
+		
+		
+
+	}
 	
 	
 	

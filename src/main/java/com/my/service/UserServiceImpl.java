@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import com.my.dao.UserDAO;
+import com.my.dto.BoardVO;
 import com.my.dto.UserVO;
 
 @Service
@@ -168,6 +169,24 @@ public class UserServiceImpl implements UserService{
 	public List<HashMap<String, Object>> getMentorList(String member_id) {
 		// TODO Auto-generated method stub
 		return dao.selectmentor(member_id);
+	}
+
+
+	@Override
+	public HashMap<String, Object> getboard(BoardVO board) {
+		// TODO Auto-generated method stub
+		return dao.boardOne(board);
+	}
+
+
+	@Override
+	public void writeboard(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		
+	
+			dao.insertboard(params);
+		
+		
 	}
 	
 }

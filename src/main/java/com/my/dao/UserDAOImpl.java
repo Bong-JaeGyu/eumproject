@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+import com.my.dto.BoardVO;
 import com.my.dto.UserVO;
 import com.my.mapper.UserMapper;
 
@@ -71,6 +73,24 @@ public class UserDAOImpl implements UserDAO{
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		// TODO Auto-generated method stub
 		return mapper.selectmentor(member_id);
+	}
+
+	@Override
+	public HashMap<String, Object> boardOne(BoardVO board) {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		// TODO Auto-generated method stub
+		
+		System.out.println(board);
+		return mapper.boardOne(board);
+	}
+
+	@Override
+	public boolean insertboard(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		mapper.insertboard(params);
+		
+		return false;
 	}
 
 	

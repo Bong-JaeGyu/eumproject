@@ -24,11 +24,39 @@
 	</insert>
 	
 	
+	
+	
+	
+	<insert id="insertboard" parameterType="java.util.HashMap">
+	
+	
+	
+	insert into board (`board_writer`, `board_type`, `board_own`,`board_hit`,`board_content`,`board_title`,`board_pw`,`board_date`,`board_cate`)
+	 values(#{board_writer},#{board_type},#{board_own},0,#{board_content},#{board_title},#{board_pw},sysdate(),#{board_cate});
+	
+	
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<select id="selectmentor" parameterType="String" resultType="java.util.HashMap">
 	select * from mentoring where mentee_id = #{mentee_id}
 	
 	</select>
 	
+	
+	<select id="boardOne" parameterType="BoardVO" resultType="java.util.HashMap">
+	select * from board where board_num = #{board_num} and board_writer = #{board_writer}
+	
+	</select>
 	
 	
 	

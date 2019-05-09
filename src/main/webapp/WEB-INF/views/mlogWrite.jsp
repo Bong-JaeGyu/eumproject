@@ -1,6 +1,5 @@
-
-    
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,17 +33,23 @@
 
     <!-- Modernizer for Portfolio -->
     <script src="js/modernizer.js"></script>
+	<script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+	Vue.config.devtools = true;
+</script>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script>Vue.config.devtools = true;</script>
+
+
 
 
 
@@ -196,143 +201,107 @@
 	
 	<div class="all-title-box">
 		<div class="container text-center">
-			<h1>마이페이지<span class="m_1">나의 공간</span></h1>
+			<h1>MLOG<span class="m_1">멘토의 공간</span></h1>
 		</div>
 	</div>
 	
-    <div id="contact" class="section wb">
-        <div class="container">
-
-            <div class="section-title text-center">
-                <h3>~~님의 마이페이지</h3>
-                <p class="lead">~~</p>
-            </div><!-- end title -->
-			<div class="modal-content">
-					
-					<div class="modal-body customer-box">
-						<!-- Nav tabs -->
-
-						
-							<ul class="nav nav-tabs" >
-								<li><a class="active" href="#msgbox"data-toggle="tab">쪽지함</a></li>
-								<li><a href="#mentorbox" data-toggle="tab">멘토</a></li>
-								<li><a href="#myinfo" data-toggle="tab">나의 정보</a></li>
-		
-		
-							</ul>
-						
-							
-	      
+	
 	 
-
-
-							<div class="tab-pane" id="msgbox">
-								
+	
+	<br>
+	
+	<div id="writedit" class="section wb">
+        <div class="container">
+   <input v-model="mlogtitle" type="text" id="mlogtitle" style="width: 100%" placeholder="   MLOG 제목">
+            <div class="section-title text-center">
+                
+             
+                
+                <textarea name="editor1"></textarea>
+             
+                
+                <div>
+	<button style="" v-on:click="mlogwritego" class="btn btn-light btn-radius btn-brd grd1">
+										작성하기
+									</button>
 									
-									 <c:forEach items="${msgList}" var="msg">
-										<div id="app-4">
-										<ul class="children" >
-												<li class="comment">
-													<div class="avatar"><img alt="" src="images/avatar-03.jpg" class="avatar"></div>
-													<div class="comment-container">
-														<h5 class="comment-author"><a href="#">${msg.send_id}</a></h5>
-														<div class="comment-meta"><a href="#" class="comment-date link-style1">${msg.send_date}</a>
-														<a class="comment-reply-link link-style3" href="#respond">쪽지보내기 »</a>
-													
-														
-														<a class="comment-reply-link2 link-style3" href="#respond">삭제하기 »</a>
-														</div>
-													
-														<div class="comment-body">
-															<p>${msg.content}</p>
-														</div>
-													</div>
-												</li>
-											</ul>
-										</div>	
-										
-										  </c:forEach>
-							</div>
-
-
-					 
-
-
-<script>
-var app4 = new Vue({
-  el: '#app-4',
-  data: {
-    msgs: [
-      { member_id:'user1', membor_img:'',senddate:'2019-05-01',text: '111111' },
-	  { member_id:'user2', membor_img:'',senddate:'2019-05-03',text: '222222' },
-	  { member_id:'user3', membor_img:'',senddate:'2019-05-02',text: '3333333' },
-    ]
-  }
-})
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-						
-						<!-- Tab panes -->
-						
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-						</div>
-					</div>
-				</div>
-
-
-
-
-
-
-
-
-
-
-
-            <!-- <div class="mypage" id="mypage_content">
-				<div id="mypage_image">
-					<img src="" alt="사진없음">
-				</div>
-				
-				<ul class="mypage_ul">
-					<li class="mypage_li">나의 멘토</li>
-					<li class="mypage_li">관심 멘토</li>
-					<li class="mypage_li">알림</li>
-					<li class="mypage_li">회원정보</li>
-				</ul>
-
-				<div id="mypage_text">내용</div> -->
-
-
+	<button style="" class="btn btn-light btn-radius btn-brd grd1">
+										취소하기
+									</button></div>
+                
+                
+                
 
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
 	
-	<div class="parallax section dbcolor">
+	
+	
+	
+   <br>
+   <script>
+                        CKEDITOR.replace( 'editor1');
+                </script>
+
+<script>
+
+
+
+
+
+
+
+
+
+
+var vmMlog = new Vue({
+	
+	el : "#writedit",
+	data : {
+		
+		mlogtitle : ''
+
+		
+	},
+	
+	methods : {
+		
+		
+		mlogwritego : function () {
+			
+		
+			alert(this.mlogtitle+ mlogcontent)
+			axios.get('mlogwritego.do',{
+				params : {
+					mlogtitle : this.mlogtitle
+					
+					
+				}
+				
+				
+			})
+			
+			
+		}
+		
+	}
+	
+	
+})
+ 
+
+</script>		
+
+
+
+
+
+
+
+
+
+    <div class="parallax section dbcolor">
         <div class="container">
             <div class="row logos">
                 <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
@@ -426,12 +395,15 @@ var app4 = new Vue({
 
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCKjLTXdq6Db3Xit_pW_GK4EXuPRtnod4o"></script>
-	<!-- Mapsed JavaScript -->
-	<script src="js/mapsed.js"></script>
-	<script src="js/01-custom-places-example.js"></script>
     <!-- ALL PLUGINS -->
     <script src="js/custom.js"></script>
+
+
+
+
+
+
+
 
 </body>
 </html>

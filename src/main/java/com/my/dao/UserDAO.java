@@ -2,6 +2,8 @@ package com.my.dao;
 
 import java.util.HashMap;
 import java.util.List;
+
+import com.my.dto.BoardVO;
 import com.my.dto.UserVO;
 
 public interface UserDAO {
@@ -23,6 +25,9 @@ public interface UserDAO {
 	
 	public List<HashMap<String, Object>> selectmentor(String member_id);
 	
+	public HashMap<String, Object> boardOne(BoardVO board);
+	
+	 public boolean insertboard(HashMap<String, Object> params);
 	
 }
 

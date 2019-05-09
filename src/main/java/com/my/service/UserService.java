@@ -3,6 +3,8 @@ package com.my.service;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+
+import com.my.dto.BoardVO;
 import com.my.dto.UserVO;
  
 public interface UserService {
@@ -21,6 +23,11 @@ public interface UserService {
     public List<HashMap<String, Object>> getMentorList(String member_id);
     
     public String careerApi1() throws IOException;
+    
+    public HashMap<String, Object>getboard(BoardVO board);
+    
+    public void writeboard(HashMap<String, Object>params);
+    
     
 }
 

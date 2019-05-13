@@ -59,19 +59,6 @@ public class HomeController {
 		return "index";
 	}
 	
-	// 로그인 페이지 실행하도록
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public ModelAndView loginPage(HttpServletRequest request, Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	
-		String id = (String) request.getParameter("email1");			// 보내진 id 받아옴
-		String pass = (String) request.getParameter("exampleInputPassword1");		// 보내진 pw 받아옴
-		System.out.println(request.toString());
-		System.out.println(id+pass);
-		return new ModelAndView("login");
-	}
-	
-	
-	
 	
 	
 	
@@ -102,6 +89,18 @@ public class HomeController {
 //		return new ModelAndView("login");
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "mlogWrite.do" ) 
 //	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
@@ -124,25 +123,122 @@ public class HomeController {
 		HashMap<String, Object>board = new HashMap<String, Object>();
 		
 		board.put("board_title", mlogtitle);
-		board.put("board_writer", "test writer");
+		board.put("board_writer", session.getAttribute("id"));
 		board.put("board_type", "mlog");
-		board.put("board_own", "test own");
+		board.put("board_own", session.getAttribute("id"));
 		board.put("board_pw", "test pw");
 		board.put("board_cate", "test cate");
 		board.put("board_content",mlogcontent);
 		
 		System.out.println(board.get("board_title"));
+		System.out.println(board.get("board_content"));
+		
+		
+		service.writeboard(board);
+		
+
+		
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "boardWrite.do" ) 
+//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public ModelAndView boardWrite(Model model, HttpServletResponse resp ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	
+		 
+		 
+		return new ModelAndView("boardWrite");
+
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "writego.do" ) 
+//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void writego(String boardtitle,  String boardcontent, Model model, HttpServletResponse resp, HttpSession session) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+		
+	
+		
+		
+		HashMap<String, Object>board = new HashMap<String, Object>();
+		
+		board.put("board_title", boardtitle);
+		board.put("board_writer", "bong2");
+		board.put("board_type", "board");
+		board.put("board_own", "bong2");
+		board.put("board_pw", "1111");
+		board.put("board_cate", "test cate");
+		board.put("board_content","test");
+		
+		System.out.println(board.get("board_title"));
+		System.out.println(board.get("board_content"));
+		
 		
 		service.writeboard(board);
 		
 		
 		
-		
-		
-		
-		
-		
 	}
+	
+	
+	
+	 
+	
+	
+	
+	
+
+	@RequestMapping(value = "boardlist.do", method = RequestMethod.GET)
+	public ModelAndView boardlistgo(HttpServletRequest request, Model model, HttpSession session){  
+		
+	
+		
+		 List<HashMap<String, Object>> boardList=service.boardList("bong2");
+		
+		 
+		 System.out.println(boardList.size());
+		 
+		 
+		 for(int i =0; i<boardList.size();i++) {
+			 
+			 boardList.get(i).put("board_no", boardList.size()-i);
+		
+			 
+		
+		 };
+		 
+		 
+		 
+		 System.out.println(boardList);
+	
+	
+		 
+		
+		 
+		 model.addAttribute("boardList", boardList);
+		 
+	
+		
+		return new ModelAndView("boardlist");
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -216,32 +312,6 @@ public class HomeController {
 	
 	
 	
-	
-	
-	
-	// 로그인 페이지에서 아이디, 비번 입력하고나서 로그인 유무 정하는 페이지
-	@RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
-	public ModelAndView loginCheckPage(HttpServletRequest request, Model model) {
-		String id = (String) request.getParameter("user_id");			// 보내진 id 받아옴
-		String pass = (String) request.getParameter("user_pw");		// 보내진 pw 받아옴
-		String testId = "test";
-		String testPass = "test";
-		
-		// 데이터베이스에 내가 로그인에서 친 아이디가 있는지 확인하기,  데이터베이스 아이디가 있으면 패스워드 확인
-		try {
-			System.out.println("test용 아이디는 잇습니다.");
-		} catch(Exception e) {
-			System.out.println("아이디가 없습니다.");
-			return new ModelAndView("/loginFail");
-		}
-		
-		if(pass.equals(testPass)) {			// password 맞음.
-			System.out.println("로그인 성공");
-			return new ModelAndView("/loginSuccess");
-		}
-		return new ModelAndView("/loginFail");
-	}
-	
 	@RequestMapping(value = "mypage.do", method = RequestMethod.GET)
 	public ModelAndView loginSuccessPage(HttpServletRequest request, Model model, HttpSession session){  
 		
@@ -269,21 +339,6 @@ public class HomeController {
 
 	
 	
-	
-	
-	
-	
-	// loginFail 페이지 실행하도록
-	@RequestMapping(value = "/loginFail", method = RequestMethod.GET)
-	public ModelAndView loginFailPage(HttpServletRequest request, Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-		
-		
-		
-		
-		
-		return new ModelAndView("login");
-	}
-
 	
 
 	@ResponseBody
@@ -352,19 +407,6 @@ public class HomeController {
 	
 	
 	
-	
-	
-
-	// db 접속
-	@RequestMapping(value = "/dbTest.do", method = RequestMethod.GET)
-	public ModelAndView dbTestPage(Locale locale, Model model) throws Exception{
-	    List<HashMap<String, Object>> userList = service.getMemberList();
-	       
-	    
-	    model.addAttribute("userList", userList);
-	    System.out.println(userList.toString());
-	    return new ModelAndView("dbTest");
-	}
 	
 	
 	

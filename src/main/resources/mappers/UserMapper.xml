@@ -59,6 +59,14 @@
 	</select>
 	
 	
+	<select id="selectboard" parameterType="String" resultType="java.util.HashMap">
+	select board_num, board_writer, board_hit, board_title, board_date from board where board_own=#{board_own} and board_type="board" order by board_num desc; 
+	
+	</select>
+	
+	
+	
+	
 	
 	
 	
@@ -88,8 +96,6 @@
 	</select>
 
 
-    
-    
     
     
     

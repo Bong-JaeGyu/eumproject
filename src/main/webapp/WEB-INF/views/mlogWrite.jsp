@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
     <!-- Basic -->
     <meta charset="utf-8">
@@ -212,7 +212,7 @@
 	
 	<div id="writedit" class="section wb">
         <div class="container">
-   <input v-model="mlogtitle" type="text" id="mlogtitle" style="width: 100%" placeholder="   MLOG 제목">
+   <input type="text" id="mlogtitle" style="width: 100%" placeholder="   MLOG 제목">
             <div class="section-title text-center">
                 
              
@@ -221,7 +221,7 @@
              
                 
                 <div>
-	<button style="" v-on:click="mlogwritego" class="btn btn-light btn-radius btn-brd grd1">
+	<button style="" onclick="mlogwritego()" class="btn btn-light btn-radius btn-brd grd1">
 										작성하기
 									</button>
 									
@@ -248,34 +248,16 @@
 
 
 
-
-
-
-
-
-
-
-var vmMlog = new Vue({
-	
-	el : "#writedit",
-	data : {
-		
-		mlogtitle : ''
-
-		
-	},
-	
-	methods : {
 		
 		
-		mlogwritego : function () {
+		function mlogwritego () {
 			
 		
-			alert(this.mlogtitle+ mlogcontent)
+		
 			axios.get('mlogwritego.do',{
 				params : {
-					mlogtitle : this.mlogtitle
-					
+					mlogtitle : document.getElementById("mlogtitle").value ,
+					mlogcontent : CKEDITOR.instances.editor1.getData()
 					
 				}
 				
@@ -283,12 +265,12 @@ var vmMlog = new Vue({
 			})
 			
 			
-		}
 		
-	}
+		}
 	
 	
-})
+	
+
  
 
 </script>		

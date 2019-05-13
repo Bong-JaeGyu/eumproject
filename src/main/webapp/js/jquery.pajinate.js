@@ -1,113 +1,5 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>jQuery Pajinate - by Wes Nolte</title>
-		
-		<link type="text/css" rel="stylesheet" href="css/styles3.css" />
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	
-		
-		
-
-	</head>
-	<body>
-					
-		
-		
-		<div>
-			
-			<div id="paging_container2" class="container">
-				<h2>Two Nav Panels</h2>
-
-				<ul class="content">
-					 <li id="lilist"><p>1</p></li> 
-					 <li id="lilist"><p>2</p></li> 
-					 <li id="lilist"><p>3</p></li> 
-					 <li id="lilist"><p>4</p></li> 
-					 <li id="lilist"><p>5</p></li> 
-					 <li id="lilist"><p>6</p></li> 
-					 <li id="lilist"><p>7</p></li> 
-					 <li id="lilist"><p>1</p></li> 
-					 <li id="lilist"><p>2</p></li> 
-					 <li id="lilist"><p>3</p></li> 
-					 <li id="lilist"><p>4</p></li> 
-					 <li id="lilist"><p>5</p></li> 
-					 <li id="lilist"><p>6</p></li> 
-					 <li id="lilist"><p>7</p></li> 
-					 <li id="lilist"><p>1</p></li> 
-					 <li id="lilist"><p>2</p></li> 
-					 <li id="lilist"><p>3</p></li> 
-					 <li id="lilist"><p>4</p></li> 
-					 <li id="lilist"><p>5</p></li> 
-					 <li id="lilist"><p>6</p></li> 
-					 <li id="lilist"><p>7</p></li> 
-					 <li id="lilist"><p>1</p></li> 
-					 <li id="lilist"><p>2</p></li> 
-					 <li id="lilist"><p>3</p></li> 
-					 <li id="lilist"><p>4</p></li> 
-					 <li id="lilist"><p>5</p></li> 
-					 <li id="lilist"><p>6</p></li> 
-					 <li id="lilist"><p>7</p></li> 
-					 <li id="lilist"><p>1</p></li> 
-					 <li id="lilist"><p>2</p></li> 
-					 <li id="lilist"><p>3</p></li> 
-					 <li id="lilist"><p>4</p></li> 
-					 <li id="lilist"><p>5</p></li> 
-					 <li id="lilist"><p>6</p></li> 
-					 <li id="lilist"><p>7</p></li> 
-					 <li id="lilist"><p>1</p></li> 
-					 <li id="lilist"><p>2</p></li> 
-					 <li id="lilist"><p>3</p></li> 
-					 <li id="lilist"><p>4</p></li> 
-					 <li id="lilist"><p>5</p></li> 
-					 <li id="lilist"><p>6</p></li> 
-					 <li id="lilist"><p>7</p></li> 
-					 <li id="lilist"><p>1</p></li> 
-					 <li id="lilist"><p>2</p></li> 
-					 <li id="lilist"><p>3</p></li> 
-					 <li id="lilist"><p>4</p></li> 
-					 <li id="lilist"><p>5</p></li> 
-					 <li id="lilist"><p>6</p></li> 
-					 <li id="lilist"><p>7</p></li> 
-					 <li id="lilist"><p>1</p></li> 
-					 <li id="lilist"><p>2</p></li> 
-					 <li id="lilist"><p>3</p></li> 
-					 <li id="lilist"><p>4</p></li> 
-					 <li id="lilist"><p>5</p></li> 
-					 <li id="lilist"><p>6</p></li> 
-					 <li id="lilist"><p>7</p></li> 
-					 <li id="lilist"><p>1</p></li> 
-					 <li id="lilist"><p>2</p></li> 
-					 <li id="lilist"><p>3</p></li> 
-					 <li id="lilist"><p>4</p></li> 
-					 <li id="lilist"><p>5</p></li> 
-					 <li id="lilist"><p>6</p></li> 
-					 <li id="lilist"><p>7</p></li> 
-					 <li id="lilist"><p>1</p></li> 
-					 <li id="lilist"><p>2</p></li> 
-					 <li id="lilist"><p>3</p></li> 
-					 <li id="lilist"><p>4</p></li> 
-					 <li id="lilist"><p>5</p></li> 
-					 <li id="lilist"><p>6</p></li> 
-					 <li id="lilist"><p>7</p></li> 
-					
-				</ul>	
-				
-				<div class="page_navigation"></div>
-				
-			
-			</div>
-
-		</div>	
-		
-				
-		
-
-		
-		<script type="text/javascript">
-			
-			(function($) { /*******************************************************************************************/
+;
+(function($) { /*******************************************************************************************/
 	// jquery.pajinate.js - version 0.4
 	// A jQuery plugin for paginating through any number of DOM elements
 	// 
@@ -131,7 +23,7 @@
 			items_per_page: 10,
 			nav_panel_id: '.page_navigation',
 			nav_info_id: '.info_text',
-			num_page_links_to_display: 10,
+			num_page_links_to_display: 20,
 			start_page: 0,
 			wrap_around: false,
 			nav_label_first: 'First',
@@ -434,19 +326,3 @@
 	};
 
 })(jQuery);
-
-
-
-
-			
-			$(document).ready(function(){
-				$('#paging_container2').pajinate();
-			});		
-
-			   
-		</script>
-
-		
-	
-	</body>
-</html>

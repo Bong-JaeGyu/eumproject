@@ -28,6 +28,6 @@ public interface UserService {
     
     public void writeboard(HashMap<String, Object>params);
     
-    
+    public List<HashMap<String, Object>> boardList(String board_own);
 }
 

@@ -29,5 +29,7 @@ public interface UserDAO {
 	
 	 public boolean insertboard(HashMap<String, Object> params);
 	
+	 public List<HashMap<String, Object>> selectboard(String board_own);
+	 
 }
 

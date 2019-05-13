@@ -188,6 +188,13 @@ public class UserServiceImpl implements UserService{
 		
 		
 	}
+
+
+	@Override
+	public List<HashMap<String, Object>> boardList(String board_own) {
+		// TODO Auto-generated method stub
+		return dao.selectboard(board_own);
+	}
 	
 }
 

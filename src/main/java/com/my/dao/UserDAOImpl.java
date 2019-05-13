@@ -93,6 +93,14 @@ public class UserDAOImpl implements UserDAO{
 		return false;
 	}
 
+	@Override
+	public List<HashMap<String, Object>> selectboard(String board_own) {
+		// TODO Auto-generated method stub
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		// TODO Auto-generated method stub
+		return mapper.selectboard(board_own);
+	}
+
 	
 	
 	

@@ -38,7 +38,15 @@
 	</insert>
 	
 	
+	<insert id="insermessage" parameterType="java.util.HashMap">
 	
+	
+	
+	insert into message (`receive_id`, `send_id`, `send_date`,`content`,`msg_read`)
+	 values(#{receive_id},#{send_id},sysdate(),#{content},1);
+	
+	
+	</insert>
 	
 	
 	

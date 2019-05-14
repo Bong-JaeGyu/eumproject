@@ -34,4 +34,9 @@ public interface UserMapper {
 	
 	
 	 public List<HashMap<String, Object>> selectboard(String board_own);
+	 
+	 public boolean insermessage(HashMap<String, Object> params);
+	 
 }
+
+

@@ -61,6 +61,22 @@
 </head>
 <body class="host_version">
 
+<%-- 	<%=session.getAttribute("id")%>
+
+	<div id="app11" v-bind="message">{{ message }}님</div>
+
+
+
+
+	<script>
+		var app11 = new Vue({
+			el : '#app11',
+			data : {
+				message : '로그인 안됨'
+			}
+		})
+	</script> --%>
+
 	<!-- Modal -->
 	<div class="modal fade" id="login" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
@@ -77,79 +93,176 @@
 					<ul class="nav nav-tabs">
 						<li><a class="active" href="#Login" data-toggle="tab">로그인</a></li>
 						<li><a href="#Registration" data-toggle="tab">가입하기</a></li>
+						
+						<li><a href="#Registration2" data-toggle="tab">추가정보</a></li>
+
+
 					</ul>
 					<!-- Tab panes -->
-					<div class="tab-content">
+					<div class="tab-content" id="loginmodal">
 						<div class="tab-pane active" id="Login">
-							<form role="form" class="form-horizontal">
+						
+						
+							<form role="form" class="form-horizontal" action="#">
 								<div class="form-group">
 									<div class="col-sm-12">
-										<input class="form-control" id="email1" placeholder="아이디"
-											type="text">
+
+										<input class="form-control" v-model="member_id" id="email1"
+											name="member_id" placeholder="아이디" type="text">
 									</div>
 								</div>
+
 								<div class="form-group">
 									<div class="col-sm-12">
-										<input class="form-control" id="exampleInputPassword1"
-											placeholder="비밀번호" type="email">
+										<!-- <input class="form-control" id="exampleInputPassword1" name="exampleInputPassword1" placeholder="비밀번호" type="text"> -->
+										<input class="form-control" v-model="member_pw"
+											id="exampleInputPassword1" name="member_pw"
+											placeholder="비밀번호" type="text">
 									</div>
 								</div>
+								
 								<div class="row">
 									<div class="col-sm-10">
-										<button type="submit"
+
+
+										<button v-on:click="logingo" type="button"
 											class="btn btn-light btn-radius btn-brd grd1">접속하기</button>
-										<a class="for-pwd" href="javascript:;">비밀번호를 잊으셨나요?</a>
+											
+											
+										<a class="for-pwd" href="javascript:;" >{{result}}</a>
 									</div>
 								</div>
+								
+								
 							</form>
 						</div>
 
 
+
+
 						<div class="tab-pane" id="Registration">
-							<form role="form" class="form-horizontal">
-								<div class="form-group">
+
+								<div class="form-group" style="text-align: center">
 									<div class="col-sm-12">
-										<input class="form-control" placeholder="이름" type="text">
+										회원 유형 : <input type="radio" v-model="mentor" name="mentor" value=1 checked="checked"
+											> 멘티 <input type="radio" name="mentor"
+											v-model="mentor" value=2> 멘토
+
 									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-12">
-										<input class="form-control" id="email" placeholder="아이디"
-											type="email">
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-12">
+											<input class="form-control" v-model="user_name" placeholder="이름" type="text">
+										</div>
 									</div>
+									<div class="form-group">
+										<div class="col-sm-12">
+											<input class="form-control" v-model="user_id" id="email" placeholder="아이디"
+												type="text">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-sm-12">
+											<input class="form-control" id="password" v-model="user_pw" placeholder="비밀번호"
+												type="password">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-sm-12">
+											<input class="form-control" v-model="user_pw_cf" id="password_cf"
+												placeholder="비밀번호확인" type="password">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-sm-12">
+											<input class="form-control" id="mobile" v-model="user_tel" placeholder="전화번호"
+												type="text">
+										</div>
+									</div>
+
+
 								</div>
 
-								<div class="form-group">
-									<div class="col-sm-12">
-										<input class="form-control" id="password" placeholder="비밀번호"
-											type="password">
-									</div>
-								</div>
 
-								<div class="form-group">
-									<div class="col-sm-12">
-										<input class="form-control" id="password-cf"
-											placeholder="비밀번호확인" type="password">
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="col-sm-12">
-										<input class="form-control" id="mobile" placeholder="전화번호"
-											type="text">
-									</div>
-								</div>
 
 								<div class="row">
 									<div class="col-sm-10">
-										<button type="button"
-											class="btn btn-light btn-radius btn-brd grd1">가입하기</button>
+
+					
 										<button type="button"
 											class="btn btn-light btn-radius btn-brd grd1">취소</button>
 									</div>
 								</div>
-							</form>
+								
+								
+								<!-- 	<ul class="nav nav-tabs">
+						<li><a class="active" href="#Registration2" data-toggle="tab">추가정보</a></li>
+						<li><a href="#" data-toggle="tab">취소</a></li>
+								</ul> -->
+								
+								
+								
+								
+								
 						</div>
+
+						<div class="tab-pane" id="Registration2">
+
+
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="user_birthday"
+										placeholder="생년월일" name="user_birthday" v-model="user_birthday" type="date">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="job" v-model="job"  placeholder="직업 or 학교"
+										name="job" type="text">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input class="form-control" id="career" v-model="user_career" placeholder="경력 or 학년"
+										name="career" type="text">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="file" class="form-control" id="user_img"
+										placeholder="사진" name="user_img">
+
+
+								</div>
+							</div>
+
+							<div class="row">
+									<div class="col-sm-10">
+
+
+								
+
+										<button v-on:click="joingo" type="button"
+											class="btn btn-light btn-radius btn-brd grd1">가입하기</button>
+											
+											
+									<button type="button"
+											class="btn btn-light btn-radius btn-brd grd1">취소</button>
+									</div>
+								</div>
+							
+							
+							
+							
+						</div>
+
 
 
 					</div>
@@ -157,6 +270,126 @@
 			</div>
 		</div>
 	</div>
+
+
+	<script>
+		var vm2 = new Vue({
+			el : "#loginmodal",
+			data : {
+				member_id : '',
+				member_pw : '',
+				user_id :'',
+				user_pw :'',
+				job : '',
+				user_pw_cf :'',
+				user_tel :'',
+				user_name :'',
+				user_birthday:'',
+				user_career:'',
+				user_img:'',
+				mentor:'',	
+				result:''
+			},
+
+			methods : {
+
+				logingo : function(e) {
+
+
+					/*     					axios.get('http://localhost:8080/eumproject/logingo.do', param)
+					 .then(function(response) {
+					 console.log(response);
+					
+					 }); */
+
+					/* 						axios({
+					
+					 url: 'http://localhost:8080/eumproject/logingo.do?member_id=999&member_pw=888',
+					 method: 'get',
+					 data: {
+					 member_id: 'Siberian Husky',
+					 member_pw: 'Siberian Husky'
+					 }
+					 }) */
+
+					axios.get('logingo.do', {
+						params : {
+							member_id : this.member_id,
+							member_pw : this.member_pw
+						}
+
+					}).then(function(data) {
+						console.log(data);
+						console.log(data.data);
+						if (data.data == 1) {
+							console.log("로그인 실패");
+						
+							vm2.$data.result = "아이디 또는 비밀번호가 잘못됐습니다";
+							
+							
+						}else {
+							
+							console.log("로그인 성공");
+							$('#login').modal('toggle'); 
+							alert("로그인 성공!!!!");
+							$("#login_out1").css('display','none');
+							$("#login_out2").css('display','inline');
+						
+							
+							
+						}
+					})
+
+				}, //logingo 끝
+				joingo : function(e) {
+
+	
+
+				axios.get('joingo.do', {
+					params : {
+						user_id :this.user_id,
+						user_pw :this.user_pw,
+						job : this.job,
+						user_pw_cf :this.user_pw_cf,
+						user_tel :this.user_tel,
+						user_name :this.user_name,
+						user_birthday:this.user_birthday,
+						user_career:this.user_career,
+						user_img:this.user_img,
+						mentor:this.mentor
+						
+					}
+
+				}).then(function(data) {
+					console.log(data);
+					console.log(data.data);
+					if (data.data == 1) {
+						
+						alert("가입실패");
+						
+						
+						
+					}else {
+						
+						  
+						$('#login').modal('toggle'); 
+						alert("가입 성공!!!! 다시 로그인 해주세요");
+						
+					}
+				})
+
+			} //logingo 끝
+			
+			
+			} //methods 끝
+			
+
+		})// vue vm2 끝
+		
+		
+		
+	</script>
+
 
 
 
@@ -176,7 +409,7 @@
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="index.html"> <img id="logo"
+				<a class="navbar-brand" href="index.do"> <img id="logo"
 					src="images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -188,15 +421,15 @@
 				<div class="collapse navbar-collapse" id="navbars-host">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active"><a class="nav-link"
-							href="index.html">메인</a></li>
+							href="index.do">메인</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">MLOG</a></li>
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
+							class="nav-link dropdown-toggle" href="careerApi.do" id="dropdown-a"
 							data-toggle="dropdown">진로정보</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="course-grid-2.html">진로심리검사</a> <a
-									class="dropdown-item" href="course-grid-3.html">학과정보</a> <a
-									class="dropdown-item" href="course-grid-4.html">정보찾기</a>
+								<a class="dropdown-item" href="careerApi.do">진로심리검사</a> <a
+									class="dropdown-item" href="careerApi.do">학과정보</a> <a
+									class="dropdown-item" href="careerApi.do">정보찾기</a>
 							</div></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
@@ -205,13 +438,27 @@
 								<a class="dropdown-item" href="blog.html">Blog </a> <a
 									class="dropdown-item" href="blog-single.html">Blog single </a>
 							</div></li>
-						<li class="nav-item"><a class="nav-link" href="teachers.html">마이페이지</a></li>
+						<li class="nav-item"><a class="nav-link" href="mypage.do">마이페이지</a></li>
 
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a class="hover-btn-new log orange" href="#"
-							data-toggle="modal" data-target="#login"><span>login</span></a></li>
+					<ul class="nav navbar-nav navbar-right" >
+					
+					
+							<li id="login_out1"><a class="hover-btn-new log orange" href="#"
+									data-toggle="modal" data-target="#login"><span>login</span></a></li>
+									<li id="login_out2"><a class="hover-btn-new log orange" href="loginout.do"
+							><span>logout</span></a></li>
+						
+					
+
 					</ul>
+					
+					
+					
+					
+			
+						
+					
 				</div>
 			</div>
 		</nav>

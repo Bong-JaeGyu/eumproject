@@ -101,10 +101,15 @@ public class UserDAOImpl implements UserDAO{
 		return mapper.selectboard(board_own);
 	}
 
+	@Override
+	public boolean insermessage(HashMap<String, Object> params) {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		mapper.insermessage(params);
+		return false;
+	}
+
 	
-	
-	
-	
+
 	
 	
 }

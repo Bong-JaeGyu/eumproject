@@ -104,9 +104,11 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "mlogWrite.do" ) 
 //	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public ModelAndView mlogWrite(Model model, HttpServletResponse resp ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public ModelAndView mlogWrite(Model model, HttpServletResponse resp, HttpSession session  ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
 	
-		 
+		if(session.getAttribute("id")==null) {
+			return new ModelAndView("index");
+		};
 		 
 		return new ModelAndView("mlogWrite");
 
@@ -144,8 +146,10 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "boardWrite.do" ) 
 //	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public ModelAndView boardWrite(Model model, HttpServletResponse resp ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	
+	public ModelAndView boardWrite(Model model, HttpServletResponse resp, HttpSession session ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+		if(session.getAttribute("id")==null) {
+			return new ModelAndView("index");
+		};
 		 
 		 
 		return new ModelAndView("boardWrite");
@@ -164,12 +168,12 @@ public class HomeController {
 		HashMap<String, Object>board = new HashMap<String, Object>();
 		
 		board.put("board_title", boardtitle);
-		board.put("board_writer", "bong2");
+		board.put("board_writer", session.getAttribute("id"));
 		board.put("board_type", "board");
 		board.put("board_own", "bong2");
 		board.put("board_pw", "1111");
 		board.put("board_cate", "test cate");
-		board.put("board_content","test");
+		board.put("board_content",boardcontent);
 		
 		System.out.println(board.get("board_title"));
 		System.out.println(board.get("board_content"));
@@ -229,7 +233,26 @@ public class HomeController {
 	
 	
 	
+	@ResponseBody
+	@RequestMapping(value = "sendgo.do" ) 
+	public void sendgo(String receive_id,  String send_content, Model model, HttpServletResponse resp, HttpSession session) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+		
 	
+		
+		
+		HashMap<String, Object>msg = new HashMap<String, Object>();
+		
+		msg.put("receive_id", receive_id);
+		msg.put("send_id", session.getAttribute("id"));
+		msg.put("content", send_content);
+
+		
+		
+		service.sendmsg(msg);
+		
+		
+		
+	}
 	
 	
 	
@@ -336,7 +359,19 @@ public class HomeController {
 		return new ModelAndView("mypage");
 	}
 
+	
+	
+	@RequestMapping(value = "logigout.do" ) 
 
+	public ModelAndView logout(Model model, HttpServletResponse resp, HttpSession session){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	
+		 session.removeAttribute("id");
+		 
+		 
+		return new ModelAndView("index");
+
+	}
+	
 	
 	
 	
@@ -352,11 +387,11 @@ public class HomeController {
 		System.out.println(service.loginMember(member_id, member_pw));
 		System.out.println(session.getAttribute("id"));
 		
-		String result="fail";
+		int result=1;
 		if(service.loginMember(member_id, member_pw)==1){
 			session.setAttribute("id", member_id);
 		
-			result = member_id;
+			result = 2;
 			
 		}
 		resp.getWriter().println(result);
@@ -378,9 +413,10 @@ public class HomeController {
 		System.out.println("user_id"+user_id+"        user_pw        "+user_pw+"    job    " +job+"userpwcf      "+user_pw_cf+"       usertel"+user_tel+"         username"+user_name
 				+"          userbirthday"+user_birthday+"           user+career"+user_career+"                  mentor"+mentor);
 		
-		 
+		int result=1;
 		HashMap<String, Object>member = new HashMap<String, Object>();
 		
+		if(service.getMemberInfo(user_id)==null) {
 		member.put("member_id", user_id);
 		member.put("member_pw", user_pw);
 		member.put("user_pw_cf", user_pw_cf);
@@ -399,8 +435,10 @@ public class HomeController {
 	
 		member.put("mentor", mentor);
 		service.joinMember(member);
+		result = 2;
 		
-		
+		}
+		resp.getWriter().println(result);
 		
 	}
 	

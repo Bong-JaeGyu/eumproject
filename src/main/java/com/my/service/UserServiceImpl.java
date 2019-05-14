@@ -195,6 +195,15 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return dao.selectboard(board_own);
 	}
+
+
+	@Override
+	public void sendmsg(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		
+		dao.insermessage(params);
+		
+	}
 	
 }
 

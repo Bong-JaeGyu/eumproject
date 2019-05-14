@@ -123,7 +123,7 @@
 											class="btn btn-light btn-radius btn-brd grd1">접속하기</button>
 											
 											
-										<a class="for-pwd" href="javascript:;">{{member_id}}</a>
+										<a class="for-pwd" href="javascript:;" >{{result}}</a>
 									</div>
 								</div>
 								
@@ -281,8 +281,8 @@
 				user_birthday:'',
 				user_career:'',
 				user_img:'',
-				mentor:''	
-				
+				mentor:'',	
+				result:''
 			},
 
 			methods : {
@@ -315,10 +315,22 @@
 					}).then(function(data) {
 						console.log(data);
 						console.log(data.data);
-						if (data.data.result != "fail") {
-							//				console.log(app11.$data.message);
-							app11.$data.message = data.data;
-
+						if (data.data == 1) {
+							console.log("로그인 실패");
+						
+							vm2.$data.result = "아이디 또는 비밀번호가 잘못됐습니다";
+							
+							
+						}else {
+							
+							console.log("로그인 성공");
+							$('#login').modal('toggle'); 
+							alert("로그인 성공!!!!");
+							$("#login_out1").css('display','none');
+							$("#login_out2").css('display','inline');
+						
+							
+							
 						}
 					})
 
@@ -345,10 +357,18 @@
 				}).then(function(data) {
 					console.log(data);
 					console.log(data.data);
-					if (data.data.result != "fail") {
-						//				console.log(app11.$data.message);
-						app11.$data.message = data.data;
-
+					if (data.data == 1) {
+						
+						alert("가입실패");
+						
+						
+						
+					}else {
+						
+						  
+						$('#login').modal('toggle'); 
+						alert("가입 성공!!!! 다시 로그인 해주세요");
+						
 					}
 				})
 
@@ -383,7 +403,7 @@
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="index.html"> <img id="logo"
+				<a class="navbar-brand" href="index.do"> <img id="logo"
 					src="images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -395,7 +415,7 @@
 				<div class="collapse navbar-collapse" id="navbars-host">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active"><a class="nav-link"
-							href="index.html">메인</a></li>
+							href="index.do">메인</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">MLOG</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="careerApi.do" id="dropdown-a"
@@ -415,11 +435,24 @@
 						<li class="nav-item"><a class="nav-link" href="mypage.do">마이페이지</a></li>
 
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a class="hover-btn-new log orange" href="#"
-							data-toggle="modal" data-target="#login"><span>login</span></a></li>
+					<ul class="nav navbar-nav navbar-right" >
+					
+					
+							<li id="login_out1"><a class="hover-btn-new log orange" href="#"
+									data-toggle="modal" data-target="#login"><span>login</span></a></li>
+									<li id="login_out2"><a class="hover-btn-new log orange" href="loginout.do"
+							><span>logout</span></a></li>
+						
+					
 
 					</ul>
+					
+					
+					
+					
+			
+						
+					
 				</div>
 			</div>
 		</nav>
@@ -453,7 +486,7 @@
 											다양한 직업군이나 대학생 <br>멘토들에게 정보를 얻어 자신의 진로를 형성하는데 도움을 주는
 											사이트입니다.
 										</p>
-										<a href="#" class="hover-btn-new"><span>가입하기</span></a>
+										<a href="#" class="hover-btn-new" data-toggle="modal" data-target="#login"><span>가입하기</span></a>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"
 											class="hover-btn-new"><span>자세히 보기</span></a>
 									</div>
@@ -1090,7 +1123,7 @@
 					<div class="tab-content">
 						<div class="tab-pane active fade show" id="tab1">
 							<div class="row text-center">
-								<div class="col-md-4">
+								<div class="col-md-4" >
 									<div class="pricing-table pricing-table-highlighted">
 										<div class="pricing-table-header grd1">
 											<h2>진로심리검사</h2>
@@ -1102,7 +1135,7 @@
                                  
                                         </div> -->
 										<div class="pricing-table-sign-up">
-											<a href="#" class="hover-btn-new orange"><span>검사하기</span></a>
+											<a href="careerApi.do" class="hover-btn-new orange"><span>검사하기</span></a>
 										</div>
 									</div>
 								</div>
@@ -1118,7 +1151,7 @@
                                  
                                         </div> -->
 										<div class="pricing-table-sign-up">
-											<a href="#" class="hover-btn-new orange"><span>검색하기</span></a>
+											<a href="careerApi.do" class="hover-btn-new orange"><span>검색하기</span></a>
 										</div>
 									</div>
 								</div>
@@ -1135,7 +1168,7 @@
                                  
                                         </div> -->
 										<div class="pricing-table-sign-up">
-											<a href="#" class="hover-btn-new orange"><span>검색하기</span></a>
+											<a href="careerApi.do" class="hover-btn-new orange"><span>검색하기</span></a>
 										</div>
 									</div>
 								</div>
@@ -1339,7 +1372,7 @@
 							<li><a href="#">Home</a></li>
 							<li><a href="#">Mlog</a></li>
 							<li><a href="#">멘토찾기</a></li>
-							<li><a href="#">진로검사</a></li>
+							<li><a href="careerApi.do">진로검사</a></li>
 							<li><a href="#">마이페이지</a></li>
 						</ul>
 						<!-- end links -->
@@ -1406,7 +1439,25 @@
 	</script>
 
 
-
+<script>
+						
+					
+							<%if(session.getAttribute("id")==null){ 	%>
+							
+							$('#login_out2').css('display','none');
+														
+														
+														<%
+													}else{
+														%>
+														
+														
+														$('#login_out1').css('display','none');
+															<%		
+													}
+													
+													%>
+							</script>
 
 </body>
 </html>

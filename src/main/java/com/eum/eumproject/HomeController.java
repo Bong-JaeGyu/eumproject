@@ -41,9 +41,7 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	
 	@RequestMapping(value = "index.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
@@ -63,7 +61,7 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "careerApi.do", method = RequestMethod.GET)
-	public ModelAndView careerApiPage(HttpServletRequest request, Model model) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public ModelAndView careerApiPage(HttpServletRequest request, Model model) throws IOException{  
 	
 	
 		return new ModelAndView("careerApi");
@@ -73,8 +71,7 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "careerApigo.do",produces = "application/text; charset=UTF-8")
-//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public void careerApigo(Model model, HttpServletResponse resp) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void careerApigo(Model model, HttpServletResponse resp) throws IOException{  
 	
 		String result=service.careerApi1();
 	
@@ -103,8 +100,7 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "mlogWrite.do" ) 
-//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public ModelAndView mlogWrite(Model model, HttpServletResponse resp, HttpSession session  ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public ModelAndView mlogWrite(Model model, HttpServletResponse resp, HttpSession session  ) throws IOException{ 
 	
 		if(session.getAttribute("id")==null) {
 			return new ModelAndView("index");
@@ -116,8 +112,7 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "mlogwritego.do" ) 
-//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public void mlogwritego(String mlogtitle,  String mlogcontent, Model model, HttpServletResponse resp, HttpSession session) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void mlogwritego(String mlogtitle,  String mlogcontent, Model model, HttpServletResponse resp, HttpSession session) throws IOException{
 		
 	
 		
@@ -145,8 +140,7 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "boardWrite.do" ) 
-//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public ModelAndView boardWrite(Model model, HttpServletResponse resp, HttpSession session ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public ModelAndView boardWrite(Model model, HttpServletResponse resp, HttpSession session ) throws IOException{
 		if(session.getAttribute("id")==null) {
 			return new ModelAndView("index");
 		};
@@ -159,8 +153,7 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "writego.do" ) 
-//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public void writego(String boardtitle,  String boardcontent, Model model, HttpServletResponse resp, HttpSession session) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public ModelAndView writego(String boardtitle,  String boardcontent, Model model, HttpServletResponse resp, HttpSession session) throws IOException{
 		
 	
 		
@@ -181,7 +174,7 @@ public class HomeController {
 		
 		service.writeboard(board);
 		
-		
+		return new ModelAndView("boardlist.do");
 		
 	}
 	
@@ -235,7 +228,7 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "sendgo.do" ) 
-	public void sendgo(String receive_id,  String send_content, Model model, HttpServletResponse resp, HttpSession session) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void sendgo(String receive_id,  String send_content, Model model, HttpServletResponse resp, HttpSession session) throws IOException{
 		
 	
 		
@@ -283,8 +276,7 @@ public class HomeController {
 
 	@ResponseBody
 	@RequestMapping(value = "mlog.do" ) 
-//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public ModelAndView mlog(Model model, HttpServletResponse resp ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public ModelAndView mlog(Model model, HttpServletResponse resp ) throws IOException{
 	
 		 
 		 
@@ -295,8 +287,7 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "boardload.do",produces = "application/text; charset=UTF-8" ) 
-//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public void boardload(String board_num, String board_writer,Model model, HttpServletResponse resp ) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void boardload(String board_num, String board_writer,Model model, HttpServletResponse resp ) throws IOException{
 	
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("UTF-8");
@@ -320,8 +311,7 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "careerApiresult.do" ) 
-//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public void careerApiresult(String result, Model model, HttpServletResponse resp) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void careerApiresult(String result, Model model, HttpServletResponse resp) throws IOException{
 	
 		System.out.println("들어옴");
 		System.out.println(result);
@@ -361,9 +351,8 @@ public class HomeController {
 
 	
 	
-	@RequestMapping(value = "logigout.do" ) 
-
-	public ModelAndView logout(Model model, HttpServletResponse resp, HttpSession session){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	@RequestMapping(value = "loginout.do" ) 
+	public ModelAndView logout(Model model, HttpServletResponse resp, HttpSession session){
 	
 		 session.removeAttribute("id");
 		 
@@ -378,8 +367,7 @@ public class HomeController {
 
 	@ResponseBody
 	@RequestMapping(value = "logingo.do" ) 
-//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
-	public void logingo(String member_id,  String member_pw,  Model model, HttpServletResponse resp, HttpSession session) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+	public void logingo(String member_id,  String member_pw,  Model model, HttpServletResponse resp, HttpSession session) throws IOException{
 	
 
 		System.out.println(member_id+"                "+member_pw);
@@ -396,7 +384,6 @@ public class HomeController {
 		}
 		resp.getWriter().println(result);
 		
-//		return new ModelAndView("login");
 	}
 	
 	
@@ -405,9 +392,8 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "joingo.do" ) 
-//	public  ModelAndView logingo(HttpServletRequest request,  Model model){  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
 	public void joingo(String user_id,  String user_pw, String job, Model model, HttpServletResponse resp, HttpSession session,String user_pw_cf,String user_tel,
-			String user_name,String user_birthday,String user_career,int mentor) throws IOException{  // 사용자에게 보여질 view 결정 String을 사용해도 됨.
+			String user_name,String user_birthday,String user_career,int mentor) throws IOException{ 
 		
 
 		System.out.println("user_id"+user_id+"        user_pw        "+user_pw+"    job    " +job+"userpwcf      "+user_pw_cf+"       usertel"+user_tel+"         username"+user_name

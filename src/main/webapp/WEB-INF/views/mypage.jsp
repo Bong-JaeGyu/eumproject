@@ -417,7 +417,7 @@
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active"><a class="nav-link"
 							href="index.do">메인</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">MLOG</a></li>
+						<li class="nav-item"><a class="nav-link" href="mlog.do">MLOG</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="careerApi.do" id="dropdown-a"
 							data-toggle="dropdown">진로정보</a>
@@ -430,8 +430,8 @@
 							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
 							data-toggle="dropdown">멘토찾기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">Blog </a> <a
-									class="dropdown-item" href="blog-single.html">Blog single </a>
+								<a class="dropdown-item" href="#">추가예정 </a> <a
+									class="dropdown-item" href="#">추가예정 </a>
 							</div></li>
 						<li class="nav-item"><a class="nav-link" href="mypage.do">마이페이지</a></li>
 
@@ -675,6 +675,144 @@
 
 						</c:forEach>
 					</div>
+
+
+<script>
+var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    msgs: [
+      { member_id:'user1', membor_img:'',senddate:'2019-05-01',text: '111111' },
+	  { member_id:'user2', membor_img:'',senddate:'2019-05-03',text: '222222' },
+	  { member_id:'user3', membor_img:'',senddate:'2019-05-02',text: '3333333' },
+    ]
+  }
+})
+</script>
+				<div class="tab-pane" id="msgbox2" style="display: none;">
+
+						<c:forEach items="${mentorList}" var="mentor">
+					<div class="col-lg-3 col-md-6 col-12" style="display: inline-table;">
+					<div class="our-team">
+						<div class="team-img">
+							<img src="images/team-02.png">
+							<div class="social">
+								<ul>
+									<li><a href="#" class="fa fa-facebook"></a></li>
+									<li><a href="#" class="fa fa-twitter"></a></li>
+									<li><a href="#" class="fa fa-linkedin"></a></li>
+									<li><a href="#" class="fa fa-skype"></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="team-content">
+							<h3 class="title">${mentor.mentor_id}</h3>
+									<span class="post">${mentor.relation}</span>
+						</div>
+					</div>
+				</div>
+
+
+
+			</c:forEach>
+
+
+				</div>
+
+
+
+
+				<div class="tab-pane" id="msgbox3" style="display: none;">
+
+					<div class="tab-pane" id="Registration">
+						<%-- <form role="form" class="form-horizontal">
+							<div class="form-group">
+								<div class="col-sm-12">
+									아이디 <input class="form-control" placeholder="이름" value= "아이디: ${memberinfo.member_id}" type="text" disabled="disabled" >
+								</div>
+							</div> --%>
+
+
+
+					<div class="contact_form">
+                        <div id="message"></div>
+                        <form id="contactform" class="" action="contact.php" name="contactform" method="post">
+                            <div class="row row-fluid">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                   <input class="form-control" value= "아이디 : ${memberinfo.member_id}" type="text" disabled="disabled" >
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                   <input class="form-control" value= "이름 : ${memberinfo.member_name}" type="text" disabled="disabled" >
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                   <input class="form-control" value= "학교 : ${memberinfo.school}" type="text" disabled="disabled" >
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                   <input class="form-control" value= "학년 : ${memberinfo.grade}" type="text" disabled="disabled" >
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                   <input class="form-control" value= "생년월일 : ${memberinfo.user_birthday}" type="text" disabled="disabled" >
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                   <input class="form-control" value= "전화번호 : ${memberinfo.user_tel}" type="text" disabled="disabled" >
+                                </div>
+
+
+                                <div class="text-center pd">
+                                    <button type="submit" value="SEND" id="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block">수정하기</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+
+@@ -287,153 +406,164 @@ var app4 = new Vue({
+
+
+
+
+						<!-- Tab panes -->
+
+
+
+
+
+
+
+
+
+
+
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -416,7 +416,7 @@
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active"><a class="nav-link"
 							href="index.do">메인</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">MLOG</a></li>
+						<li class="nav-item"><a class="nav-link" href="mlog.do">MLOG</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="careerApi.do" id="dropdown-a"
 							data-toggle="dropdown">진로정보</a>
@@ -429,8 +429,8 @@
 							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
 							data-toggle="dropdown">멘토찾기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">Blog </a> <a
-									class="dropdown-item" href="blog-single.html">Blog single </a>
+								<a class="dropdown-item" href="#">추가예정 </a> <a
+									class="dropdown-item" href="#">추가예정 </a>
 							</div></li>
 						<li class="nav-item"><a class="nav-link" href="mypage.do">마이페이지</a></li>
 
@@ -507,15 +507,17 @@
 							<div class="row">
 								<div class="col-md-12 col-sm-12 text-left">
 									<div class="big-tagline">
-										<h2 data-animation="animated zoomInRight">
-											SmartEDU <strong>education school</strong>
+										<h2>
+											<strong>이음</strong> 진로 멘토링
 										</h2>
-										<p class="lead" data-animation="animated fadeInLeft">With
-											Landigoo responsive landing page template, you can promote
-											your all hosting, domain and email services.</p>
-										<a href="#" class="hover-btn-new"><span>Contact Us</span></a>
+										<p class="lead">
+											이음은 장소에 제약없이 다양한 직업군 ,대학생을 멘토로하여 학생들과 온라인으로 연결해주어 학생들로 하여금
+											다양한 직업군이나 대학생 <br>멘토들에게 정보를 얻어 자신의 진로를 형성하는데 도움을 주는
+											사이트입니다.
+										</p>
+										<a href="#" class="hover-btn-new" data-toggle="modal" data-target="#login"><span>가입하기</span></a>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"
-											class="hover-btn-new"><span>Read More</span></a>
+											class="hover-btn-new"><span>자세히 보기</span></a>
 									</div>
 								</div>
 							</div>
@@ -534,15 +536,17 @@
 							<div class="row">
 								<div class="col-md-12 col-sm-12 text-center">
 									<div class="big-tagline">
-										<h2 data-animation="animated zoomInRight">
-											<strong>VPS Servers</strong> Company
+										<h2>
+											<strong>이음</strong> 진로 멘토링
 										</h2>
-										<p class="lead" data-animation="animated fadeInLeft">1 IP
-											included with each server Your Choice of any OS (CentOS,
-											Windows, Debian, Fedora) FREE Reboots</p>
-										<a href="#" class="hover-btn-new"><span>Contact Us</span></a>
+										<p class="lead">
+											이음은 장소에 제약없이 다양한 직업군 ,대학생을 멘토로하여 학생들과 온라인으로 연결해주어 학생들로 하여금
+											다양한 직업군이나 대학생 <br>멘토들에게 정보를 얻어 자신의 진로를 형성하는데 도움을 주는
+											사이트입니다.
+										</p>
+										<a href="#" class="hover-btn-new" data-toggle="modal" data-target="#login"><span>가입하기</span></a>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#"
-											class="hover-btn-new"><span>Read More</span></a>
+											class="hover-btn-new"><span>자세히 보기</span></a>
 									</div>
 								</div>
 							</div>
@@ -598,7 +602,7 @@
 							있을 것입니다. 그러나 복잡성을 무너뜨리는 새로운 방법들은 이제 나온 것들이며 그 방법들은 우리가 우리의 관심을
 							극대화할 수 있도록 도와줄 것입니다. 그리고 그로 인해 앞으로의 미래는 과거와는 다를 것입니다.</p>
 
-						<a href="#" class="hover-btn-new orange"><span>MLOG</span></a>
+						<a href="mlog.do" class="hover-btn-new orange"><span>MLOG</span></a>
 					</div>
 					<!-- end messagebox -->
 				</div>
@@ -635,7 +639,7 @@
 							마치 외계인 같다. 레알 마드리드는 호날두 없이는 많은 업적을 세우지 못했을 것이다. 호날두는 이제 유벤투스에서
 							역사를 써내려가고 있다."</p>
 
-						<a href="#" class="hover-btn-new orange"><span>MLOG</span></a>
+						<a href="mlog.do" class="hover-btn-new orange"><span>MLOG</span></a>
 					</div>
 					<!-- end messagebox -->
 				</div>
@@ -739,7 +743,7 @@
 											오는군요....</p>
 									</div>
 									<div class="blog-button">
-										<a class="hover-btn-new orange" href="#"><span>읽어보기<span></a>
+										<a class="hover-btn-new orange" href="#"><span>읽어보기</span></a>
 									</div>
 								</div>
 							</div>
@@ -767,7 +771,7 @@
 											오는군요....</p>
 									</div>
 									<div class="blog-button">
-										<a class="hover-btn-new orange" href="#"><span>읽어보기<span></a>
+										<a class="hover-btn-new orange" href="#"><span>읽어보기</span></a>
 									</div>
 								</div>
 							</div>
@@ -795,7 +799,7 @@
 											오는군요....</p>
 									</div>
 									<div class="blog-button">
-										<a class="hover-btn-new orange" href="#"><span>읽어보기<span></a>
+										<a class="hover-btn-new orange" href="#"><span>읽어보기</span></a>
 									</div>
 								</div>
 							</div>
@@ -828,7 +832,7 @@
 											오는군요....</p>
 									</div>
 									<div class="blog-button">
-										<a class="hover-btn-new orange" href="#"><span>읽어보기<span></a>
+										<a class="hover-btn-new orange" href="#"><span>읽어보기</span></a>
 									</div>
 								</div>
 							</div>
@@ -856,7 +860,7 @@
 											오는군요....</p>
 									</div>
 									<div class="blog-button">
-										<a class="hover-btn-new orange" href="#"><span>읽어보기<span></a>
+										<a class="hover-btn-new orange" href="#"><span>읽어보기</span></a>
 									</div>
 								</div>
 							</div>
@@ -884,7 +888,7 @@
 											오는군요....</p>
 									</div>
 									<div class="blog-button">
-										<a class="hover-btn-new orange" href="#"><span>읽어보기<span></a>
+										<a class="hover-btn-new orange" href="#"><span>읽어보기</span></a>
 									</div>
 								</div>
 							</div>
@@ -896,6 +900,8 @@
 				</div>
 				<!-- end section -->
 
+			</div>
+			
 			</div>
 	</section>
 	<!-- 

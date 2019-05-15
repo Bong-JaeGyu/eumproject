@@ -417,7 +417,7 @@
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active"><a class="nav-link"
 							href="index.do">메인</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">MLOG</a></li>
+						<li class="nav-item"><a class="nav-link" href="mlog.do">MLOG</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="careerApi.do" id="dropdown-a"
 							data-toggle="dropdown">진로정보</a>
@@ -430,8 +430,8 @@
 							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
 							data-toggle="dropdown">멘토찾기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">Blog </a> <a
-									class="dropdown-item" href="blog-single.html">Blog single </a>
+								<a class="dropdown-item" href="#">추가예정 </a> <a
+									class="dropdown-item" href="#">추가예정 </a>
 							</div></li>
 						<li class="nav-item"><a class="nav-link" href="mypage.do">마이페이지</a></li>
 

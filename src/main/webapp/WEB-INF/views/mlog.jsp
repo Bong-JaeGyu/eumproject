@@ -412,7 +412,7 @@
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active"><a class="nav-link"
 							href="index.do">메인</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">MLOG</a></li>
+						<li class="nav-item"><a class="nav-link" href="mlog.do">MLOG</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="careerApi.do" id="dropdown-a"
 							data-toggle="dropdown">진로정보</a>
@@ -425,8 +425,8 @@
 							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
 							data-toggle="dropdown">멘토찾기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">Blog </a> <a
-									class="dropdown-item" href="blog-single.html">Blog single </a>
+								<a class="dropdown-item" href="#">추가예정 </a> <a
+									class="dropdown-item" href="#">추가예정 </a>
 							</div></li>
 						<li class="nav-item"><a class="nav-link" href="mypage.do">마이페이지</a></li>
 
@@ -616,7 +616,7 @@
 							<form method="get" id="site-searchform" action="#">
 								<div>
 									<input class="input-text form-control" name="search-k" id="search-k" placeholder="Search keywords..." type="text">
-									<input id="searchsubmit" value="Search" type="submit">
+									<input >
 								</div>
 							</form>
 						</div>
@@ -624,18 +624,18 @@
 					<div class="widget-categories">
 						<h3 class="widget-title">카테고리</h3>
 						<ul>
-							<li><a href="#">Political Science</a></li>
-							<li><a href="#">Business Leaders Guide</a></li>
-							<li><a href="#">Become a Product Manage</a></li>
-							<li><a href="#">Language Education</a></li>
-							<li><a href="#">Micro Biology</a></li>
-							<li><a href="#">Social Media Management</a></li>
+							<li><a href="boardlist.do">게시판(test)</a></li>
+							<li><a href="mlogWrite.do">mlog작성(test)</a></li>
+							<li><a href="#">근황</a></li>
+							<li><a href="#">학습자료실</a></li>
+							<li><a href="#">........</a></li>
+							<li><a href="#">.......</a></li>
 						</ul>
 					</div>
 					<div class="widget-tags">
 						<h3 class="widget-title">Tags</h3>
 						<ul class="tags">
-							<li><a href="#"><b>{{board_tag}}</b></a></li>
+							<li><a href="#"><b>합격수기</b></a></li>
 							<li><a href="#"><b>jquery</b></a></li>
 							<li><a href="#">corporate</a></li>
 							<li><a href="#">portfolio</a></li>

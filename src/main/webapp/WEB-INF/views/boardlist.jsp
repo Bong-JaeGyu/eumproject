@@ -424,7 +424,7 @@
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active"><a class="nav-link"
 							href="index.do">메인</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">MLOG</a></li>
+						<li class="nav-item"><a class="nav-link" href="mlog.do">MLOG</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="careerApi.do" id="dropdown-a"
 							data-toggle="dropdown">진로정보</a>
@@ -437,8 +437,8 @@
 							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
 							data-toggle="dropdown">멘토찾기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">Blog </a> <a
-									class="dropdown-item" href="blog-single.html">Blog single </a>
+								<a class="dropdown-item" href="#">추가예정 </a> <a
+									class="dropdown-item" href="#">추가예정 </a>
 							</div></li>
 						<li class="nav-item"><a class="nav-link" href="mypage.do">마이페이지</a></li>
 
@@ -701,20 +701,26 @@
 					</c:forEach>
 					<div>
 					
+			<!-- 	<a href="boardWrite.do" style="float: right;"><button style="" class="btn btn-light btn-radius btn-brd grd1">
+										글작성
+							</button></a>	 -->
 					
 					
-					
-				<div class="page_navigation" style="align-text: center;"></div>
+				
+				
+				
 				</div>
-			
+				<div style="margin-left: auto; margin-right: auto;">
+			<div class="page_navigation"></div></div>
 			</div>
 
 	
 					</div>
                     
            <script>
+           
            function test1(writer,num) {
-        	  console.log('test1 invoked with tt, tt2'); 
+        	
         	  console.log(writer, num);
         	   
         	     axios.get('boardload.do', {
@@ -788,11 +794,15 @@
 							<li><a href="#">premium</a></li>
 							<li><a href="#">javascript</a></li>
 							<li><a href="#"><b>Best jQuery</b></a></li>
+							
 						</ul>
+							
 					</div>
+					
 				</div>
             </div><!-- end row -->
         </div><!-- end container -->
+        
     </div><!-- end section -->
 
 
@@ -800,7 +810,7 @@
 
 
 
-
+	
 
 
 
@@ -840,10 +850,10 @@
 			num_page_links_to_display: 10,
 			start_page: 0,
 			wrap_around: false,
-			nav_label_first: 'First',
-			nav_label_prev: 'Prev',
-			nav_label_next: 'Next',
-			nav_label_last: 'Last',
+			nav_label_first: '처음',
+			nav_label_prev: '이전',
+			nav_label_next: '다음',
+			nav_label_last: '마지막',
 			nav_order: ["first", "prev", "num", "next", "last"],
 			nav_label_info: 'Showing {0}-{1} of {2} results',
 			show_first_last: true,
@@ -1022,7 +1032,7 @@
 			}
 
 		};
-
+	
 		function gotopage(page_num) {
 
 			page_num = parseInt(page_num, 10)

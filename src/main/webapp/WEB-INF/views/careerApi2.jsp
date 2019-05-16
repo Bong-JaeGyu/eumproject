@@ -211,8 +211,8 @@
 						</div>
 
 						<div class="tab-pane" id="Registration2">
-
-
+	
+								<form method="post" enctype="multipart/form-data">
 							<div class="form-group">
 								<div class="col-sm-12">
 									<input class="form-control" id="user_birthday"
@@ -237,12 +237,12 @@
 							<div class="form-group">
 								<div class="col-sm-12">
 									<input type="file" class="form-control" id="user_img"
-										placeholder="사진" name="user_img">
+										placeholder="사진" name="user_img" >
 
 
 								</div>
 							</div>
-
+								</form>
 							<div class="row">
 									<div class="col-sm-10">
 
@@ -273,6 +273,8 @@
 
 
 	<script>
+	
+		
 		var vm2 = new Vue({
 			el : "#loginmodal",
 			data : {
@@ -286,8 +288,7 @@
 				user_name :'',
 				user_birthday:'',
 				user_career:'',
-				user_img:'',
-				mentor:'',	
+				mentor: 1,	
 				result:''
 			},
 
@@ -343,24 +344,34 @@
 				}, //logingo 끝
 				joingo : function(e) {
 
-	
+					
+					
+					var formData = new FormData();
+					 formData.append("user_img", $("#user_img")[0].files[0]);
 
-				axios.get('joingo.do', {
-					params : {
-						user_id :this.user_id,
-						user_pw :this.user_pw,
-						job : this.job,
-						user_pw_cf :this.user_pw_cf,
-						user_tel :this.user_tel,
-						user_name :this.user_name,
-						user_birthday:this.user_birthday,
-						user_career:this.user_career,
-						user_img:this.user_img,
-						mentor:this.mentor
-						
-					}
-
-				}).then(function(data) {
+					
+					 
+					 
+					 axios.post('joingo.do', formData, {
+						    headers: {
+						      'Content-Type': 'multipart/form-data'
+						    },
+						    params: {
+						    	user_id :this.user_id,
+								user_pw :this.user_pw,
+								job : this.job,
+								user_pw_cf :this.user_pw_cf,
+								user_tel :this.user_tel,
+								user_name :this.user_name,
+								user_birthday:this.user_birthday,
+								user_career:this.user_career,
+								mentor:this.mentor
+						    }
+						})
+					 
+/* 
+				}) */
+				.then(function(data) {
 					console.log(data);
 					console.log(data.data);
 					if (data.data == 1) {
@@ -422,7 +433,7 @@
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active"><a class="nav-link"
 							href="index.do">메인</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">MLOG</a></li>
+						<li class="nav-item"><a class="nav-link" href="mlog.do">MLOG</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="careerApi.do" id="dropdown-a"
 							data-toggle="dropdown">진로정보</a>
@@ -435,8 +446,8 @@
 							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
 							data-toggle="dropdown">멘토찾기</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">Blog </a> <a
-									class="dropdown-item" href="blog-single.html">Blog single </a>
+								<a class="dropdown-item" href="#">추가예정 </a> <a
+									class="dropdown-item" href="#">추가예정 </a>
 							</div></li>
 						<li class="nav-item"><a class="nav-link" href="mypage.do">마이페이지</a></li>
 

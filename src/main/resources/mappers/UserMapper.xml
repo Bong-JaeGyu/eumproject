@@ -56,8 +56,7 @@
 	
 	
 	<select id="selectmentor" parameterType="String" resultType="java.util.HashMap">
-	select * from mentoring where mentee_id = #{mentee_id}
-	
+	select mt.mentee_id, mt.mentor_id, mt.relation, mb.user_img from mentoring mt left join member mb on mt.mentor_id=mb.member_id where mentee_id=#{mentee_id}
 	</select>
 	
 	
@@ -79,7 +78,10 @@
 	
 	
 	<select id="selectMsg" parameterType="String" resultType="java.util.HashMap">
-	select * from message where receive_id = #{member_id}
+
+	
+	select msg.receive_id, msg.member_id, msg.send_date, msg.content, mb.user_img from message msg left join member mb on msg.member_id=mb.member_id where receive_id = #{member_id}
+	
 	
 	</select>
 	

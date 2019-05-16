@@ -60,7 +60,39 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+<style>
+				#lilist{
+				
+				list-style: none;
+				background: aqua !important;
+				
+				}
+				
+.page_navigation , .alt_page_navigation{
+
+	margin-left: 27%;
+	
+}
+
+.page_navigation a, .alt_page_navigation a{
+	padding:3px 5px;
+	margin:2px;
+	color:white;
+	text-decoration:none;
+	
+	font-family: Tahoma;
+	font-size: 15px;
+	background-color:#DB5C04;
+}
+.active_page{
+	background-color:white !important;
+	color:black !important;
+}					
+				
+				</style>
+
 </head>
+
 <body class="host_version">
 
 <%-- 	<%=session.getAttribute("id")%>
@@ -213,8 +245,8 @@
 						</div>
 
 						<div class="tab-pane" id="Registration2">
-
-
+	
+								<form method="post" enctype="multipart/form-data">
 							<div class="form-group">
 								<div class="col-sm-12">
 									<input class="form-control" id="user_birthday"
@@ -239,12 +271,12 @@
 							<div class="form-group">
 								<div class="col-sm-12">
 									<input type="file" class="form-control" id="user_img"
-										placeholder="사진" name="user_img">
+										placeholder="사진" name="user_img" >
 
 
 								</div>
 							</div>
-
+								</form>
 							<div class="row">
 									<div class="col-sm-10">
 
@@ -275,6 +307,8 @@
 
 
 	<script>
+	
+		
 		var vm2 = new Vue({
 			el : "#loginmodal",
 			data : {
@@ -288,8 +322,7 @@
 				user_name :'',
 				user_birthday:'',
 				user_career:'',
-				user_img:'',
-				mentor:'',	
+				mentor: 1,	
 				result:''
 			},
 
@@ -345,24 +378,34 @@
 				}, //logingo 끝
 				joingo : function(e) {
 
-	
+					
+					
+					var formData = new FormData();
+					 formData.append("user_img", $("#user_img")[0].files[0]);
 
-				axios.get('joingo.do', {
-					params : {
-						user_id :this.user_id,
-						user_pw :this.user_pw,
-						job : this.job,
-						user_pw_cf :this.user_pw_cf,
-						user_tel :this.user_tel,
-						user_name :this.user_name,
-						user_birthday:this.user_birthday,
-						user_career:this.user_career,
-						user_img:this.user_img,
-						mentor:this.mentor
-						
-					}
-
-				}).then(function(data) {
+					
+					 
+					 
+					 axios.post('joingo.do', formData, {
+						    headers: {
+						      'Content-Type': 'multipart/form-data'
+						    },
+						    params: {
+						    	user_id :this.user_id,
+								user_pw :this.user_pw,
+								job : this.job,
+								user_pw_cf :this.user_pw_cf,
+								user_tel :this.user_tel,
+								user_name :this.user_name,
+								user_birthday:this.user_birthday,
+								user_career:this.user_career,
+								mentor:this.mentor
+						    }
+						})
+					 
+/* 
+				}) */
+				.then(function(data) {
 					console.log(data);
 					console.log(data.data);
 					if (data.data == 1) {
@@ -648,27 +691,26 @@
 	
 	
 	
-	
-	
-	
-    <div id="overviews" class="section wb">
-        <div class="container">
-            <div class="row"> 
-                <div class="col-lg-9 blog-post-single">
-                    
 
 	
+	
+
+	<div style="margin: 0 auto">
 					
 					
 					<div class="blog-comments">
 					
-			
+					
 			<div id="paging_container2" class="container">
-				<h2>게시판 구현</h2>
+				<h2 style="margin-left: 50%">게시판 구현</h2>
 			<c:forEach items="${boardList}" var="boardlist">
 				<ul class="content">
-					 <li id="lilist" style="list-style: none;">
-					 
+				
+				
+				
+					 <li id="lilist">
+					 						
+					 						
          
                                             <div class="post-content">
                                                 
@@ -693,8 +735,7 @@
                                         
 								
 								</li>
-					 
-	 
+	
 				
 					
 				</ul>	
@@ -710,8 +751,8 @@
 				
 				
 				</div>
-				<div style="margin-left: auto; margin-right: auto;">
-			<div class="page_navigation"></div></div>
+			
+			<div class="page_navigation"></div>
 			</div>
 
 	
@@ -755,55 +796,10 @@
 
 
 					
-                </div><!-- end col -->
-				<div class="col-lg-3 col-12 right-single">
-					<div class="widget-search">
-						<div class="site-search-area">
-							<form method="get" id="site-searchform" action="#">
-								<div>
-									<input class="input-text form-control" name="search-k" id="search-k" placeholder="Search keywords..." type="text">
-									<input id="searchsubmit" value="Search" type="submit">
-								</div>
-							</form>
-						</div>
-					</div>
-					<div class="widget-categories">
-						<h3 class="widget-title">카테고리</h3>
-						<ul>
-							<li><a href="#" data-toggle="modal" data-target="#tttt">Political Science</a></li>
-							<li><a href="#">Business Leaders Guide</a></li>
-							<li><a href="#">Become a Product Manage</a></li>
-							<li><a href="#">Language Education</a></li>
-							<li><a href="#">Micro Biology</a></li>
-							<li><a href="#">Social Media Management</a></li>
-						</ul>
-					</div>
-					<div class="widget-tags">
-						<h3 class="widget-title">Tags</h3>
-						<ul class="tags">
-							<li><a href="#"><b>{{board_tag}}</b></a></li>
-							<li><a href="#"><b>jquery</b></a></li>
-							<li><a href="#">corporate</a></li>
-							<li><a href="#">portfolio</a></li>
-							<li><a href="#">css3</a></li>
-							<li><a href="#"><b>theme</b></a></li>
-							<li><a href="#"><b>html5</b></a></li>
-							<li><a href="#"><b>mysql</b></a></li>
-							<li><a href="#">multipurpose</a></li>
-							<li><a href="#">responsive</a></li>
-							<li><a href="#">premium</a></li>
-							<li><a href="#">javascript</a></li>
-							<li><a href="#"><b>Best jQuery</b></a></li>
-							
-						</ul>
-							
-					</div>
-					
-				</div>
-            </div><!-- end row -->
-        </div><!-- end container -->
-        
-    </div><!-- end section -->
+             
+
+        </div>
+
 
 
 
@@ -1164,27 +1160,7 @@
 
 
 				
-<style>
-.page_navigation , .alt_page_navigation{
-	padding-bottom: 10px;
-}
 
-.page_navigation a, .alt_page_navigation a{
-	padding:3px 5px;
-	margin:2px;
-	color:white;
-	text-decoration:none;
-	float: left;
-	font-family: Tahoma;
-	font-size: 12px;
-	background-color:#DB5C04;
-}
-.active_page{
-	background-color:white !important;
-	color:black !important;
-}	
-
-</style>
 		
 		
 		
@@ -1362,7 +1338,27 @@
     <!-- ALL PLUGINS -->
     <script src="js/custom.js"></script>
 
+<script>
+						
+					
+							<%if(session.getAttribute("id")==null){ 	%>
+							
+							$('#login_out2').css('display','none');
+														
+														
+														<%
+													}else{
+														%>
+														
+														
+														$('#login_out1').css('display','none');
+															<%		
+													}
+													
+													%>
+							</script>
 
+</body>
 
 
 

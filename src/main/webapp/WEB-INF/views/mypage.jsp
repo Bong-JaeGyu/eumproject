@@ -206,8 +206,8 @@
 						</div>
 
 						<div class="tab-pane" id="Registration2">
-
-
+	
+								<form method="post" enctype="multipart/form-data">
 							<div class="form-group">
 								<div class="col-sm-12">
 									<input class="form-control" id="user_birthday"
@@ -232,12 +232,12 @@
 							<div class="form-group">
 								<div class="col-sm-12">
 									<input type="file" class="form-control" id="user_img"
-										placeholder="사진" name="user_img">
+										placeholder="사진" name="user_img" >
 
 
 								</div>
 							</div>
-
+								</form>
 							<div class="row">
 									<div class="col-sm-10">
 
@@ -268,6 +268,8 @@
 
 
 	<script>
+	
+		
 		var vm2 = new Vue({
 			el : "#loginmodal",
 			data : {
@@ -281,8 +283,7 @@
 				user_name :'',
 				user_birthday:'',
 				user_career:'',
-				user_img:'',
-				mentor:'',	
+				mentor: 1,	
 				result:''
 			},
 
@@ -338,24 +339,34 @@
 				}, //logingo 끝
 				joingo : function(e) {
 
-	
+					
+					
+					var formData = new FormData();
+					 formData.append("user_img", $("#user_img")[0].files[0]);
 
-				axios.get('joingo.do', {
-					params : {
-						user_id :this.user_id,
-						user_pw :this.user_pw,
-						job : this.job,
-						user_pw_cf :this.user_pw_cf,
-						user_tel :this.user_tel,
-						user_name :this.user_name,
-						user_birthday:this.user_birthday,
-						user_career:this.user_career,
-						user_img:this.user_img,
-						mentor:this.mentor
-						
-					}
-
-				}).then(function(data) {
+					
+					 
+					 
+					 axios.post('joingo.do', formData, {
+						    headers: {
+						      'Content-Type': 'multipart/form-data'
+						    },
+						    params: {
+						    	user_id :this.user_id,
+								user_pw :this.user_pw,
+								job : this.job,
+								user_pw_cf :this.user_pw_cf,
+								user_tel :this.user_tel,
+								user_name :this.user_name,
+								user_birthday:this.user_birthday,
+								user_career:this.user_career,
+								mentor:this.mentor
+						    }
+						})
+					 
+/* 
+				}) */
+				.then(function(data) {
 					console.log(data);
 					console.log(data.data);
 					if (data.data == 1) {
@@ -650,7 +661,7 @@
 								<ul class="children">
 									<li class="comment">
 										<div class="avatar">
-											<img alt="" src="images/avatar-03.jpg" class="avatar">
+											<img alt="" src='${msg.user_img}' class="avatar">
 										</div>
 										<div class="comment-container">
 											<h5 class="comment-author">
@@ -658,7 +669,7 @@
 											</h5>
 											<div class="comment-meta">
 												<a href="#" class="comment-date link-style1">${msg.send_date}</a>
-												<a class="comment-reply-link link-style3" href="#" data-toggle="modal" data-target="#notego" onclick="javascript: msgsend('${msg.send_id}');" >쪽지보내기
+												<a class="comment-reply-link link-style3" href="#" data-toggle="modal" data-target="#notego" onclick="javascript: msgsend('${msg.member_id}');" >쪽지보내기
 													»</a> <a class="comment-reply-link2 link-style3"
 													href="#respond"> 삭제하기 »</a>
 											</div>
@@ -695,7 +706,7 @@ var app4 = new Vue({
 					<div class="col-lg-3 col-md-6 col-12" style="display: inline-table;">
 					<div class="our-team">
 						<div class="team-img">
-							<img src="images/team-02.png">
+							<img src="${mentor.user_img}">
 							<div class="social">
 								<ul>
 									<li><a href="#" class="fa fa-facebook"></a></li>
@@ -707,7 +718,7 @@ var app4 = new Vue({
 						</div>
 						<div class="team-content">
 							<h3 class="title">${mentor.mentor_id}</h3>
-									<span class="post">${mentor.relation}</span>
+									<span class="post"><%=session.getAttribute("id") %>님의 ${mentor.relation}</span>
 						</div>
 					</div>
 				</div>
@@ -768,16 +779,6 @@ var app4 = new Vue({
                                 </div>
                             </div>
                         </form>
-
-
-
-
-@@ -287,153 +406,164 @@ var app4 = new Vue({
-
-
-
-
-						<!-- Tab panes -->
 
 
 

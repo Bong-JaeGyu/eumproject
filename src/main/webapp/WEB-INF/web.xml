@@ -31,6 +31,6 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	
-
+<Context path="/member_images" reloadable="true" docBase="/member_images"/>
 
 </web-app>

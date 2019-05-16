@@ -3,11 +3,13 @@ package com.eum.eumproject;
 
 
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -133,7 +137,7 @@ public class HomeController {
 		
 		service.writeboard(board);
 		
-
+		
 		
 	}
 	
@@ -174,7 +178,7 @@ public class HomeController {
 		
 		service.writeboard(board);
 		
-		return new ModelAndView("boardlist.do");
+		return new ModelAndView("boardlist");
 		
 	}
 	
@@ -334,13 +338,16 @@ public class HomeController {
 		};
 		
 		 List<HashMap<String, Object>> msgList=service.getMsgList((String)session.getAttribute("id"));
-//		System.out.println(msgList);
+		System.out.println(msgList);
 		
+		 
 		 List<HashMap<String, Object>> mentorList=service.getMentorList((String)session.getAttribute("id"));
 		 HashMap<String, Object> memberinfo=service.getMemberInfo((String)session.getAttribute("id"));
 		 System.out.println(msgList);
 		 System.out.println(mentorList);
 		 System.out.println(memberinfo);
+		 
+		 
 		 
 		model.addAttribute("msgList", msgList);
 		model.addAttribute("mentorList", mentorList);
@@ -391,13 +398,42 @@ public class HomeController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "joingo.do" ) 
+	@RequestMapping(value = "joingo.do", produces = "application/text; charset=UTF-8" ) 
 	public void joingo(String user_id,  String user_pw, String job, Model model, HttpServletResponse resp, HttpSession session,String user_pw_cf,String user_tel,
-			String user_name,String user_birthday,String user_career,int mentor) throws IOException{ 
+			String user_name,String user_birthday,String user_career,int mentor,MultipartHttpServletRequest multi) throws IOException{ 
+		
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("UTF-8");
 		
 
 		System.out.println("user_id"+user_id+"        user_pw        "+user_pw+"    job    " +job+"userpwcf      "+user_pw_cf+"       usertel"+user_tel+"         username"+user_name
 				+"          userbirthday"+user_birthday+"           user+career"+user_career+"                  mentor"+mentor);
+		
+		String path="C:/Users/bit-user/eclipse-workspace6/eumproject/src/main/webapp/member_images/";
+        String newFileName = ""; // 업로드 되는 파일명
+        String fileName=null; 
+     // 디레토리가 없다면 생성
+        
+        File dir = new File(path); if (!dir.isDirectory()) { dir.mkdirs(); }
+
+        
+         
+        Iterator<String> files = multi.getFileNames();
+        while(files.hasNext()){
+            String uploadFile = files.next();
+                         
+            MultipartFile mFile = multi.getFile(uploadFile);
+            fileName = mFile.getOriginalFilename();
+            System.out.println("실제 파일 이름 : " +fileName);
+            try {
+                mFile.transferTo(new File(path+fileName));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+		
+		
+        
 		
 		int result=1;
 		HashMap<String, Object>member = new HashMap<String, Object>();
@@ -409,6 +445,7 @@ public class HomeController {
 		member.put("user_tel", user_tel);
 		member.put("user_name", user_name);
 		member.put("user_birthday", user_birthday);
+		member.put("user_img", "member_images/"+fileName);
 		if(mentor==1) {
 			member.put("grade", user_career);
 			member.put("school", job);

@@ -35,6 +35,9 @@ public interface UserService {
     public void sendmsg(HashMap<String, Object>params);
     
     
+    public List<HashMap<String, Object>> getComentList(int board_num);
+    
+    public void postcomment(HashMap<String, Object>params);
     
 }
 

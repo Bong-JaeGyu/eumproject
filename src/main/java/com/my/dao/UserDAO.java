@@ -34,5 +34,8 @@ public interface UserDAO {
 	 
 	public boolean insermessage(HashMap<String, Object> params); 
 	 
+	public boolean insertcomment(HashMap<String, Object> params);
+	
+	 public List<HashMap<String, Object>> selectcomment(int board_num);
 }
 

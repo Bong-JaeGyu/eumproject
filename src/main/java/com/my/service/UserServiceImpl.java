@@ -204,6 +204,23 @@ public class UserServiceImpl implements UserService{
 		dao.insermessage(params);
 		
 	}
+
+
+	@Override
+	public List<HashMap<String, Object>> getComentList(int board_num) {
+		
+			return dao.selectcomment(board_num);
+		
+	}
+
+
+	@Override
+	public void postcomment(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		
+		dao.insertcomment(params);
+		
+	}
 	
 }
 

@@ -2,7 +2,7 @@ package com.my.dto;
 
 public class BoardVO {
 
-	private String board_num;
+	private int board_num;
 	private String board_writer;
 	private String board_type;
 	private String board_own;
@@ -13,10 +13,10 @@ public class BoardVO {
 	private String board_date;
 	private String board_cate;
 	private String board_tag;
-	public String getBoard_num() {
+	public int getBoard_num() {
 		return board_num;
 	}
-	public void setBoard_num(String board_num) {
+	public void setBoard_num(int board_num) {
 		this.board_num = board_num;
 	}
 	public String getBoard_writer() {

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -541,79 +542,50 @@
 					
 					
 					<div class="blog-comments">
-						<h4>Comments (3)</h4>
+						<h4>Comments</h4>
+						
+						
 						<div id="comment-blog">
-							<ul class="comment-list">
+						
+							<ul class="comment-list" v-for='comment in commentlist'>
+							
 								<li class="comment">
 									<div class="avatar"><img alt="" src="images/avatar-01.jpg" class="avatar"></div>
 									<div class="comment-container">
-										<h5 class="comment-author"><a href="#">John Smith</a></h5>
+										<h5 class="comment-author"><a href="#">{{comment.comment_id}}</a></h5>
 										<div class="comment-meta">
-											<a href="#" class="comment-date link-style1">February 22, 2015</a>
-											<a class="comment-reply-link link-style3" href="#respond">Reply »</a>
+											<a href="#" class="comment-date link-style1">{{comment.comment_date}}</a>
+											<a class="comment-reply-link link-style3" href="#respond"></a>
 										</div>
 										<div class="comment-body">
-											<p>Ne omnis saperet docendi nec, eos ea alii molestiae aliquand. Latine fuisset mele, mandamus atrioque eu mea, wi forensib argumentum vim an. Te viderer conceptam sed, mea et delenit fabellas probat.</p>
+											<p>{{comment.comment_content}}</p>
 										</div>
 									</div>
 								</li>
 
 								
-								<li class="comment">
-									<div class="avatar"><img alt="" src="images/avatar-02.jpg" class="avatar"></div>
-									<div class="comment-container">
-										<h5 class="comment-author"><a href="#">John Smith</a></h5>
-										<div class="comment-meta">
-											<a href="#" class="comment-date link-style1">February 22, 2015</a>
-											<a class="comment-reply-link link-style3" href="#respond">Reply »</a>
-										</div>
-										<div class="comment-body">
-											<p>Ne omnis saperet docendi nec, eos ea alii molestiae aliquand. Latine fuisset mele, mandamus atrioque eu mea, wi forensib argumentum vim an. Te viderer conceptam sed, mea et delenit fabellas probat.</p>
-										</div>
-									</div>
-									<ul class="children">
-										<li class="comment">
-											<div class="avatar"><img alt="" src="images/avatar-03.jpg" class="avatar"></div>
-											<div class="comment-container">
-												<h5 class="comment-author"><a href="#">Thomas Smith</a></h5>
-												<div class="comment-meta"><a href="#" class="comment-date link-style1">February 14, 2015</a><a class="comment-reply-link link-style3" href="#respond">Reply »</a></div>
-												<div class="comment-body">
-													<p>Labores pertinax theophrastus vim an. Error ditas in sea, per no omnis iisque nonumes. Est an dicam option, ad quis iriure saperet nec, ignota causae inciderint ex vix. Iisque qualisque imp duo eu, pro reque consequ untur. No vero laudem legere pri, error denique vis ne, duo iusto bonorum.</p>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</li>
 							</ul>
+							
+							
 						</div>
+							
 					</div>
+					
+					
+					
 					<div class="comments-form">
 						<h4>댓글남기기</h4>
 						<div class="comment-form-main">
 							<form action="#">
 								<div class="row">
-									<div class="col-md-4">
-										<div class="form-group">
-											<input class="form-control" name="commenter-name" placeholder="Name" id="commenter-name" type="text">
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<input class="form-control" name="commenter-email" placeholder="Email" id="commenter-email" type="text">
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<input class="form-control" name="commenter-url" placeholder="Website URL" id="commenter-url" type="text">
-										</div>
-									</div>
+									
 									<div class="col-md-12">
 										<div class="form-group">
-											<textarea class="form-control" name="commenter-message" placeholder="Message" id="commenter-message" cols="30" rows="2"></textarea>
+											<textarea class="form-control" name="commenter-message" placeholder="Message" cols="30" rows="2" v-model='comment_message'></textarea>
 										</div>
 									</div>
 									<div class="col-md-12 post-btn">
-										<button class="hover-btn-new orange"><span>Post Comment</span></button>
+										<button class="hover-btn-new orange" v-on:click='post_comment'><span>Post Comment</span></button>
 									</div>
 								</div>
 							</form>
@@ -621,6 +593,21 @@
 					</div>
 					
                 </div><!-- end col -->
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
 				<div class="col-lg-3 col-12 right-single">
 					<div class="widget-search">
 						<div class="site-search-area">
@@ -682,8 +669,9 @@
 				board_hit:'',
 				board_own:'',
 				board_cate:'',
-				board_tag:''
-				
+				board_tag:'',
+				comment_message:'',
+				commentlist:{}
 			},
 			mounted : function () {
 			    // 
@@ -697,7 +685,7 @@
 						}
 
 					}).then(function(data){
-						
+					
 						console.log(data.data);
 						
 						vm1.$data.board_title = data.data.board_title;
@@ -711,11 +699,36 @@
 						vm1.$data.board_hit = data.data.board_hit;
 						vm1.$data.board_content = data.data.board_content;
 						vm1.$data.board_tag = data.data.board_tag;
+						vm1.$data.commentlist =data.data.commentList;
+						
 						
 					});
 			    		
 					
-			  } 
+			  },
+			  methods : {
+				 
+				  post_comment : function() {
+
+					
+
+						axios.get('commentgo.do', {
+							params : {
+								comment_message: this.comment_message,
+								board_num: this.board_num
+							}
+
+						})
+
+	
+							
+						}
+				  
+				  
+			  }
+			
+			
+			
 				
 		})				
 		

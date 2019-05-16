@@ -251,7 +251,26 @@ public class HomeController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "commentgo.do" ) 
+	public void sendgo(String comment_message, int board_num,Model model, HttpServletResponse resp, HttpSession session) throws IOException{
+		
 	
+		
+		
+		HashMap<String, Object>comment = new HashMap<String, Object>();
+		
+		comment.put("comment_content", comment_message);
+		comment.put("comment_id", session.getAttribute("id"));
+		comment.put("board_num", board_num);
+
+		
+		
+		service.postcomment(comment);
+		
+		
+		
+	}
 	
 	
 	
@@ -280,7 +299,7 @@ public class HomeController {
 
 	@ResponseBody
 	@RequestMapping(value = "mlog.do" ) 
-	public ModelAndView mlog(Model model, HttpServletResponse resp ) throws IOException{
+	public ModelAndView mlog(Model model, HttpServletResponse resp) throws IOException{
 	
 		 
 		 
@@ -291,7 +310,7 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "boardload.do",produces = "application/text; charset=UTF-8" ) 
-	public void boardload(String board_num, String board_writer,Model model, HttpServletResponse resp ) throws IOException{
+	public void boardload(int board_num, String board_writer,Model model, HttpServletResponse resp ) throws IOException{
 	
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("UTF-8");
@@ -300,14 +319,24 @@ public class HomeController {
 			board.setBoard_num(board_num);
 			board.setBoard_writer(board_writer);
 		 HashMap<String, Object> boardinfo=service.getboard(board);
-		
-		 System.out.println(boardinfo);
+	
+		 List<HashMap<String, Object>> commentList=service.getComentList(board_num);
+			
+		 System.out.println(commentList);
+		 
+		 boardinfo.put("commentList", commentList);
+
+		 
+		System.out.println(boardinfo);
 		
 		 Gson gson=new Gson();
 		 String result=gson.toJson(boardinfo);
 		 System.out.println(result);
 		 resp.getWriter().println(result);
 	}
+	
+	
+	
 	
 	
 	

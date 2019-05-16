@@ -111,6 +111,22 @@ public class UserDAOImpl implements UserDAO{
 		return false;
 	}
 
+	@Override
+	public List<HashMap<String, Object>> selectcomment(int board_num) {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		// TODO Auto-generated method stub
+		return mapper.selectcomment(board_num);
+	}
+
+	@Override
+	public boolean insertcomment(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		mapper.insertcomment(params);
+		return false;
+	}
+
 	
 
 	

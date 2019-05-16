@@ -518,7 +518,7 @@
 							</p>
 						</div>
 						<div class="author-desc">
-							<img src="images/author.jpg" alt="about author">
+							<img :src='user_img' alt="about author">
 							<ul class="author-social">
 								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -550,7 +550,7 @@
 							<ul class="comment-list" v-for='comment in commentlist'>
 							
 								<li class="comment">
-									<div class="avatar"><img alt="" src="images/avatar-01.jpg" class="avatar"></div>
+									<div class="avatar"><img alt="" :src='comment.user_img' class="avatar"></div>
 									<div class="comment-container">
 										<h5 class="comment-author"><a href="#">{{comment.comment_id}}</a></h5>
 										<div class="comment-meta">
@@ -663,6 +663,7 @@
 				board_content:'',
 				board_type : '',
 				board_writer :'test writer',
+				user_img:'',
 				board_num :'10',
 				board_pw:'',
 				board_date:'',
@@ -700,7 +701,7 @@
 						vm1.$data.board_content = data.data.board_content;
 						vm1.$data.board_tag = data.data.board_tag;
 						vm1.$data.commentlist =data.data.commentList;
-						
+						vm1.$data.user_img =data.data.user_img;
 						
 					});
 			    		

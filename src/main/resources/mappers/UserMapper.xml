@@ -70,7 +70,9 @@
 	
 	
 	<select id="boardOne" parameterType="BoardVO" resultType="java.util.HashMap">
-	select * from board where board_num = #{board_num} and board_writer = #{board_writer}
+	select b.board_num, b.board_writer, b.board_type, b.board_own,b.board_hit, b.board_content, b.board_title, b.board_pw, b.board_date, b.board_cate, b.board_tag, m.user_img 
+	from board b left join member m on b.board_writer=m.member_id where board_num = #{board_num} and board_writer = #{board_writer}
+	
 	
 	</select>
 	
@@ -81,7 +83,7 @@
 	</select>
 	
 	<select id="selectcomment" parameterType="int" resultType="java.util.HashMap">
-	select * from comment where board_num=#{board_num}
+	select c.comment_num, c.board_num, c.comment_id, c.comment_content, c.comment_date, m.user_img from comment c left join member m on c.comment_id=m.member_id  where board_num= #{board_num};
 	
 	</select>
 	

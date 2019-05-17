@@ -39,5 +39,8 @@ public interface UserService {
     
     public void postcomment(HashMap<String, Object>params);
     
+    public void delMsg(HashMap<String, Object>params);
+    
+    public void mentorok(HashMap<String, Object>params);
 }
 

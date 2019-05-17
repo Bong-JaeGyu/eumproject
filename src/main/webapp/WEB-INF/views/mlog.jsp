@@ -397,6 +397,25 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<!-- LOADER -->
 	<div id="preloader">
 		<div class="loader-container">
@@ -464,6 +483,97 @@
 				</div>
 			</div>
 		</nav>
+		
+		
+	<div id="mentoring">
+        
+    
+	
+	<!-- Modal -->
+	<div class="modal fade" id="mentorgo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  >
+	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document" >
+		<div class="modal-content" >
+			
+			
+
+				
+              
+                    <div class="contact_form">
+                       
+                     
+                         
+                             
+                                
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <textarea class="form-control" v-model="send_content" rows="6" placeholder="상대편에게 보낼 메시지"></textarea>
+                                </div>
+                                <div class="text-center pd">
+                                    <button type="button" class="btn btn-light btn-radius btn-brd grd1 btn-block" v-on:click="sendgo" >멘토신청</button>
+                                </div>
+                           
+                  
+                    </div>
+                
+
+       		
+   			</div><!-- end section -->
+			
+
+			
+			
+			
+		</div>
+	  </div>
+	</div>	
+		
+	<script>			
+	var mentoring = new Vue({
+			el : '#mentoring',
+			data : {
+				receive_id:'',
+				send_content:''
+				
+			},
+			methods :  {
+				
+				
+				sendgo : function(e) {
+			  	
+					this.receive_id=vm1.board_writer;
+					console.log(this.receive_id);
+					console.log(this.send_content);
+			    axios.get('mentorgo.do', {
+						params : {
+							receive_id : this.receive_id,
+							send_content : this.send_content
+							
+						}
+
+					}).then(function(data){
+						
+						$('#mentorgo').modal('toggle'); 
+						notevm.$data.send_content= "";
+						
+						
+						
+						
+					});
+			    		
+					
+				  } 
+			}	
+		})				
+		
+	</script>	
+	
+	
+	
+	
+	
+	
+		
+		
+		
 	</header>
 	<!-- End header -->
 	
@@ -472,6 +582,10 @@
 			<h1>MLOG<span class="m_1">멘토의 공간</span></h1>
 		</div>
 	</div>
+	
+	
+	
+	
 	
 	
 	
@@ -493,7 +607,7 @@
 							<div class="meta-info-blog">
 								<span><i class="fa fa-calendar"></i> <a href="#">{{board_date}}</a> </span>
 								<span><i class="fa fa-tag"></i>  <a href="#">{{board_cate}}</a> </span>
-								<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
+								<span><i class="fa fa-comments"></i> <a href="#">{{commentlength}}개의 댓글</a></span>
 							</div>
 							<div class="blog-title">
 								<h2><a href="#" title="">제목 : {{board_title}}</a></h2>
@@ -542,7 +656,7 @@
 					
 					
 					<div class="blog-comments">
-						<h4>Comments</h4>
+						<h4>댓글</h4>
 						
 						
 						<div id="comment-blog">
@@ -614,20 +728,21 @@
 							<form method="get" id="site-searchform" action="#">
 								<div>
 									<input class="input-text form-control" name="search-k" id="search-k" placeholder="Search keywords..." type="text">
-									<input >
+									<input id="searchsubmit" value="Search" type="submit">
 								</div>
 							</form>
 						</div>
 					</div>
+					
+					
 					<div class="widget-categories">
 						<h3 class="widget-title">카테고리</h3>
 						<ul>
+							<li><a href="#" data-toggle="modal" data-target="#mentorgo" >멘토신청</a></li>
+							<li><a href="mlogWrite.do">mlog</a></li>
 							<li><a href="boardlist.do">게시판(test)</a></li>
-							<li><a href="mlogWrite.do">mlog작성(test)</a></li>
-							<li><a href="#">근황</a></li>
 							<li><a href="#">학습자료실</a></li>
-							<li><a href="#">........</a></li>
-							<li><a href="#">.......</a></li>
+			
 						</ul>
 					</div>
 					<div class="widget-tags">
@@ -672,7 +787,10 @@
 				board_cate:'',
 				board_tag:'',
 				comment_message:'',
+				commentlength: '',
+				send_content:'',
 				commentlist:{}
+				
 			},
 			mounted : function () {
 			    // 
@@ -702,6 +820,7 @@
 						vm1.$data.board_tag = data.data.board_tag;
 						vm1.$data.commentlist =data.data.commentList;
 						vm1.$data.user_img =data.data.user_img;
+						vm1.$data.commentlength= data.data.commentList.length;
 						
 					});
 			    		
@@ -723,9 +842,29 @@
 
 	
 							
+						},
+						
+						
+						sendgo : function(e) {
+							  
+							
+						    axios.get('mentorgo.do', {
+									params : {
+										board_writer : this.board_writer,
+										send_content : this.send_content
+									}
+
+								}).then(function(data){
+									
+									$('#mentorgo').modal('toggle'); 
+									notevm.$data.send_content= "";
+									
+									
+									
+									
+								});
+				  
 						}
-				  
-				  
 			  }
 			
 			

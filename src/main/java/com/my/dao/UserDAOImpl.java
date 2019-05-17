@@ -127,6 +127,20 @@ public class UserDAOImpl implements UserDAO{
 		return false;
 	}
 
+	@Override
+	public boolean deleteMsg(HashMap<String, Object> params) {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		mapper.deleteMsg(params);
+		return false;
+	}
+
+	@Override
+	public boolean insertmentoring(HashMap<String, Object> params) {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		mapper.insertmentoring(params);
+		return false;
+	}
+
 	
 
 	

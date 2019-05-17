@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -671,13 +672,22 @@
 												<a href="#" class="comment-date link-style1">${msg.send_date}</a>
 												<a class="comment-reply-link link-style3" href="#" data-toggle="modal" data-target="#notego" onclick="javascript: msgsend('${msg.member_id}');" >쪽지보내기
 													»</a> <a class="comment-reply-link2 link-style3"
-													href="#respond"> 삭제하기 »</a>
+													href="#" onclick="javascript: msgdel('${msg.member_id}',${msg.msg_num});"> 삭제하기 »</a>
+													<c:if test="${msg.mentor_msg == 'mentor'}">
+													<a class="comment-reply-link2 link-style3"
+													href="#" style="margin-top: 2%" onclick="javascript: mentorok('${msg.member_id}',${msg.msg_num});"> 수락하기 »</a>
+													 </c:if>
 											</div>
 
 											<div class="comment-body">
 												<p>${msg.content}</p>
 											</div>
-										
+											
+									
+												
+	    											
+	  											
+  									
 											
 										</div>
 									</li>
@@ -826,6 +836,50 @@ function msgsend(receive_id) {
 	notevm.$data.receive_id = receive_id;
 	
 }
+
+function msgdel(id,num) {
+	
+	axios.get('msgdel.do', {
+		params : {
+			receive_id : id,
+			msg_num : num
+		}
+
+	}).then(function(data) {
+		
+		
+		
+		location.href="mypage.do"	
+		
+		
+		})
+	
+	
+}
+
+
+
+function mentorok(id,num) {
+	
+	axios.get('mentorok.do', {
+		params : {
+			member_id : id,
+			msg_num : num
+		}
+
+	}).then(function(data) {
+		
+		
+		
+		location.href="mypage.do"	
+		
+		
+		})
+	
+}
+
+
+
 
 
 </script>

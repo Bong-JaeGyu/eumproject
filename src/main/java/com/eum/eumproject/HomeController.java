@@ -115,11 +115,13 @@ public class HomeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "mlogwritego.do" ) 
+	@RequestMapping(value = "mlogwritego.do", produces = "application/text; charset=UTF-8" ) 
 	public void mlogwritego(String mlogtitle,  String mlogcontent, Model model, HttpServletResponse resp, HttpSession session) throws IOException{
 		
 	
-		
+	
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("UTF-8");
 		
 		HashMap<String, Object>board = new HashMap<String, Object>();
 		
@@ -156,10 +158,12 @@ public class HomeController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "writego.do" ) 
+	@RequestMapping(value = "writego.do",produces = "application/text; charset=UTF-8" ) 
 	public ModelAndView writego(String boardtitle,  String boardcontent, Model model, HttpServletResponse resp, HttpSession session) throws IOException{
 		
-	
+		
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("UTF-8");
 		
 		
 		HashMap<String, Object>board = new HashMap<String, Object>();
@@ -190,10 +194,12 @@ public class HomeController {
 	
 	
 
-	@RequestMapping(value = "boardlist.do", method = RequestMethod.GET)
-	public ModelAndView boardlistgo(HttpServletRequest request, Model model, HttpSession session){  
+	@RequestMapping(value = "boardlist.do", method = RequestMethod.GET,	produces = "application/text; charset=UTF-8")
+	public ModelAndView boardlistgo(HttpServletRequest request, Model model, HttpSession session,HttpServletResponse resp){  
 		
 	
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("UTF-8");
 		
 		 List<HashMap<String, Object>> boardList=service.boardList("bong2");
 		
@@ -231,18 +237,20 @@ public class HomeController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "sendgo.do" ) 
+	@RequestMapping(value = "sendgo.do",produces = "application/text; charset=UTF-8" ) 
 	public void sendgo(String receive_id,  String send_content, Model model, HttpServletResponse resp, HttpSession session) throws IOException{
 		
-	
+		
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("UTF-8");
 		
 		
 		HashMap<String, Object>msg = new HashMap<String, Object>();
 		
 		msg.put("receive_id", receive_id);
-		msg.put("send_id", session.getAttribute("id"));
+		msg.put("member_id", session.getAttribute("id"));
 		msg.put("content", send_content);
-
+		msg.put("mentor_msg", "msg");
 		
 		
 		service.sendmsg(msg);
@@ -251,10 +259,94 @@ public class HomeController {
 		
 	}
 	
+	
 	@ResponseBody
-	@RequestMapping(value = "commentgo.do" ) 
-	public void sendgo(String comment_message, int board_num,Model model, HttpServletResponse resp, HttpSession session) throws IOException{
+	@RequestMapping(value = "mentorgo.do",produces = "application/text; charset=UTF-8" ) 
+	public void mentorgo(String receive_id,  String send_content, Model model, HttpServletResponse resp, HttpSession session) throws IOException{
 		
+		
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("UTF-8");
+		
+		
+		HashMap<String, Object>msg = new HashMap<String, Object>();
+		
+		msg.put("receive_id", receive_id);
+		msg.put("member_id", session.getAttribute("id"));
+		msg.put("content", send_content);
+		msg.put("mentor_msg", "mentor");
+		
+		
+		service.sendmsg(msg);
+		
+		
+		
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "msgdel.do",produces = "application/text; charset=UTF-8" ) 
+	public void msgdel(int msg_num, Model model, HttpServletResponse resp, HttpSession session) throws IOException{
+		
+		
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("UTF-8");
+		
+		
+		HashMap<String, Object>msg = new HashMap<String, Object>();
+		
+		msg.put("receive_id", session.getAttribute("id"));
+		
+		msg.put("msg_num", msg_num);
+		
+		
+		service.delMsg(msg);
+		
+
+	}
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "mentorok.do",produces = "application/text; charset=UTF-8" ) 
+	public void mentorok(String member_id,int msg_num, Model model, HttpServletResponse resp, HttpSession session) throws IOException{
+		
+		
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("UTF-8");
+		
+		
+		HashMap<String, Object>msg = new HashMap<String, Object>();
+		
+		msg.put("receive_id", session.getAttribute("id"));
+		
+		msg.put("msg_num", msg_num);
+		
+		
+		service.delMsg(msg);
+		
+		HashMap<String, Object>mentor = new HashMap<String, Object>();
+		
+		mentor.put("mentee_id", member_id);
+		mentor.put("mentor_id", session.getAttribute("id"));
+	
+		System.out.println(mentor);
+		service.mentorok(mentor);
+		
+		
+
+	}
+	
+	
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "commentgo.do" ,	produces = "application/text; charset=UTF-8") 
+	public void sendgo(String comment_message, int board_num,Model model, HttpServletResponse resp, HttpSession session) throws IOException{
+	
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("UTF-8");
 	
 		
 		
@@ -358,9 +450,12 @@ public class HomeController {
 	
 	
 	
-	@RequestMapping(value = "mypage.do", method = RequestMethod.GET)
-	public ModelAndView loginSuccessPage(HttpServletRequest request, Model model, HttpSession session){  
+	@RequestMapping(value = "mypage.do", method = RequestMethod.GET , produces = "application/text; charset=UTF-8")
+	public ModelAndView loginSuccessPage(HttpServletRequest request, Model model, HttpSession session,HttpServletResponse resp){  
 		
+	
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("UTF-8");
 		
 		if(session.getAttribute("id")==null) {
 			return new ModelAndView("index");
@@ -398,13 +493,14 @@ public class HomeController {
 	}
 	
 	
-	
-	
+
 
 	@ResponseBody
-	@RequestMapping(value = "logingo.do" ) 
+	@RequestMapping(value = "logingo.do",produces = "application/text; charset=UTF-8" ) 
 	public void logingo(String member_id,  String member_pw,  Model model, HttpServletResponse resp, HttpSession session) throws IOException{
-	
+		
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("UTF-8");
 
 		System.out.println(member_id+"                "+member_pw);
 		
@@ -421,6 +517,12 @@ public class HomeController {
 		resp.getWriter().println(result);
 		
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

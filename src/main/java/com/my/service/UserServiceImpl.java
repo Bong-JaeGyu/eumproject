@@ -221,6 +221,21 @@ public class UserServiceImpl implements UserService{
 		dao.insertcomment(params);
 		
 	}
+
+
+	@Override
+	public void delMsg(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		dao.deleteMsg(params);
+	}
+
+
+	@Override
+	public void mentorok(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		
+		dao.insertmentoring(params);
+	}
 	
 }
 

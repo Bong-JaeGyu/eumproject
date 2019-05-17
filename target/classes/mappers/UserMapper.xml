@@ -42,8 +42,8 @@
 	
 	
 	
-	insert into message (`receive_id`, `send_id`, `send_date`,`content`,`msg_read`)
-	 values(#{receive_id},#{send_id},sysdate(),#{content},1);
+	insert into message (`receive_id`, `member_id`, `send_date`,`content`,`msg_read`,`mentor_msg`)
+	 values(#{receive_id},#{member_id},sysdate(),#{content},1,#{mentor_msg});
 	
 	
 	</insert>
@@ -60,7 +60,14 @@
 	
 	</insert>
 	
+	<insert id="insertmentoring" parameterType="java.util.HashMap">
 	
+	
+	
+	insert into mentoring (`mentee_id`, `mentor_id`, `relation`) values(#{mentee_id},#{mentor_id},"멘토");
+	
+	
+	</insert>
 	
 	
 	
@@ -89,12 +96,18 @@
 	
 	
 	
+	<delete id="deleteMsg" parameterType="java.util.HashMap">
+		delete from  message where msg_num =#{msg_num} and receive_id = #{receive_id}
+		
+	</delete>
+	
+	
 	
 	
 	<select id="selectMsg" parameterType="String" resultType="java.util.HashMap">
 
 	
-	select msg.receive_id, msg.member_id, msg.send_date, msg.content, mb.user_img from message msg left join member mb on msg.member_id=mb.member_id where receive_id = #{member_id}
+	select msg.receive_id, msg.member_id, msg.send_date, msg.content, msg.mentor_msg,  msg.msg_num, mb.user_img from message msg left join member mb on msg.member_id=mb.member_id where receive_id = #{member_id}
 	
 	
 	</select>

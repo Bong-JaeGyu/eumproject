@@ -47,7 +47,7 @@ public interface UserMapper {
 	 public boolean insertmentoring(HashMap<String, Object> params);
 	 
 	 
-	 
+	 public HashMap<String, Object> selectMlog();
 	 
 	 
 }

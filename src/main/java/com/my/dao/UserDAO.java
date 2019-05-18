@@ -41,5 +41,7 @@ public interface UserDAO {
 	 public boolean deleteMsg(HashMap<String, Object> params);
 	 
 	 public boolean insertmentoring(HashMap<String, Object> params);
+	 
+	 public HashMap<String, Object> selectMlog();
 }
 

@@ -505,7 +505,7 @@
                              
                                 
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <textarea class="form-control" v-model="send_content" rows="6" placeholder="상대편에게 보낼 메시지"></textarea>
+                                    <textarea class="form-control" v-model="send_content" rows="6" placeholder="멘토에게 보낼 메시지"></textarea>
                                 </div>
                                 <div class="text-center pd">
                                     <button type="button" class="btn btn-light btn-radius btn-brd grd1 btn-block" v-on:click="sendgo" >멘토신청</button>
@@ -777,9 +777,9 @@
 				board_title: '',
 				board_content:'',
 				board_type : '',
-				board_writer :'test writer',
+				board_writer :'',
 				user_img:'',
-				board_num :'10',
+				board_num :'',
 				board_pw:'',
 				board_date:'',
 				board_hit:'',
@@ -797,10 +797,10 @@
 			  
 			    
 		
-			    axios.get('boardload.do', {
+			    axios.get('mlogload.do', {
 						params : {
-							board_num : this.board_num,
-							board_writer : this.board_writer
+							board_num : 1,
+							board_writer : "test" 
 						}
 
 					}).then(function(data){

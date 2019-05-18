@@ -410,8 +410,13 @@ public class HomeController {
 			BoardVO board= new BoardVO();
 			board.setBoard_num(board_num);
 			board.setBoard_writer(board_writer);
+				
 		 HashMap<String, Object> boardinfo=service.getboard(board);
+		 
+		
 	
+		
+		 
 		 List<HashMap<String, Object>> commentList=service.getComentList(board_num);
 			
 		 System.out.println(commentList);
@@ -428,7 +433,32 @@ public class HomeController {
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value = "mlogload.do",produces = "application/text; charset=UTF-8" ) 
+	public void mlogload(int board_num, String board_writer,Model model, HttpServletResponse resp ) throws IOException{
 	
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("UTF-8");
+		
+		 
+		
+		 HashMap<String, Object> boardinfo=service.getmlog();
+		
+		 
+		 List<HashMap<String, Object>> commentList=service.getComentList((Integer) boardinfo.get("board_num"));
+			
+		 System.out.println(commentList);
+		 
+		 boardinfo.put("commentList", commentList);
+
+		 
+		System.out.println(boardinfo);
+		
+		 Gson gson=new Gson();
+		 String result=gson.toJson(boardinfo);
+		 System.out.println(result);
+		 resp.getWriter().println(result);
+	}
 	
 	
 	
@@ -540,11 +570,12 @@ public class HomeController {
 		System.out.println("user_id"+user_id+"        user_pw        "+user_pw+"    job    " +job+"userpwcf      "+user_pw_cf+"       usertel"+user_tel+"         username"+user_name
 				+"          userbirthday"+user_birthday+"           user+career"+user_career+"                  mentor"+mentor);
 		
-		String path="C:/Users/bit-user/eclipse-workspace6/eumproject/src/main/webapp/member_images/";
+		String path="/var/lib/tomcat8/webapps/ROOT/member_images/";
+//		String path="C:/Users/bit-user/eclipse-workspace6/eumproject/src/main/webapp/member_images/";
         String newFileName = ""; // 업로드 되는 파일명
         String fileName=null; 
      // 디레토리가 없다면 생성
-        
+ 
         File dir = new File(path); if (!dir.isDirectory()) { dir.mkdirs(); }
 
         

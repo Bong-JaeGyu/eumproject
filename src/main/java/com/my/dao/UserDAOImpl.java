@@ -141,6 +141,13 @@ public class UserDAOImpl implements UserDAO{
 		return false;
 	}
 
+	@Override
+	public HashMap<String, Object> selectMlog() {
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		// TODO Auto-generated method stub
+		return mapper.selectMlog();
+	}
+
 	
 
 	

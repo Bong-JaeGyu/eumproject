@@ -83,6 +83,15 @@
 	
 	</select>
 	
+	<select id="selectMlog" resultType="java.util.HashMap">
+	select b.board_num, b.board_writer, b.board_type, b.board_own,b.board_hit, b.board_content, b.board_title, b.board_pw, b.board_date, b.board_cate, b.board_tag, m.user_img 
+	from board b left join member m on b.board_writer=m.member_id where board_type='mlog' order by board_num desc limit 1; 
+	
+	
+	</select>
+	
+	
+	
 	
 	<select id="selectboard" parameterType="String" resultType="java.util.HashMap">
 	select board_num, board_writer, board_hit, board_title, board_date from board where board_own=#{board_own} and board_type="board" order by board_num desc; 

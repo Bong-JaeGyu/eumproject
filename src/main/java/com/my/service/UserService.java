@@ -42,5 +42,8 @@ public interface UserService {
     public void delMsg(HashMap<String, Object>params);
     
     public void mentorok(HashMap<String, Object>params);
+    
+    public HashMap<String, Object>getmlog();
+    
 }
 

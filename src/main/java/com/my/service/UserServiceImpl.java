@@ -236,6 +236,13 @@ public class UserServiceImpl implements UserService{
 		
 		dao.insertmentoring(params);
 	}
+
+
+	@Override
+	public HashMap<String, Object> getmlog() {
+		// TODO Auto-generated method stub
+		return dao.selectMlog();
+	}
 	
 }
 
